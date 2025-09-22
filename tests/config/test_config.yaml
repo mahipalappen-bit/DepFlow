@@ -1,0 +1,73 @@
+# DepFlow Test Configuration
+application:
+  name: "DepFlow - Enterprise Dependency Management"
+  url: "http://localhost:3000"
+  version: "1.0.0"
+  
+browser:
+  default: "Chrome"
+  headless: false
+  window_size: "1920x1080"
+  implicit_wait: 10
+  page_load_timeout: 30
+  
+test_data:
+  admin_user:
+    username: "admin@depflow.com"
+    password: "admin123"
+    role: "admin"
+  
+  regular_user:
+    username: "user@depflow.com"
+    password: "user123"
+    role: "user"
+    
+  test_dependency:
+    name: "Test React Component"
+    description: "Automated test dependency for Robot Framework testing"
+    team: "Annotation tools"
+    status: "NOT STARTED"
+    priority: "MEDIUM"
+    risk_level: "LOW"
+    jira_ticket: "https://jira.example.com/TEST-123"
+
+email:
+  test_recipient: "mmahipal.reddy@gmail.com"
+  smtp_server: "smtp.gmail.com"
+  smtp_port: 587
+
+api:
+  base_url: "http://localhost:3000/api"
+  timeout: 30
+  endpoints:
+    dependencies: "/dependencies"
+    test_email: "/test-email"
+    
+teams:
+  - "Quality flow"
+  - "Annotation tools"
+  - "Data Collection"
+  - "ADAP Platform"
+  - "CrowdGen"
+  - "Mercury"
+  - "Marketing Cloud"
+  - "Data Engineering"
+  - "Analytics"
+  - "Product Management"
+
+statuses:
+  - "NOT STARTED"
+  - "IN PROGRESS"
+  - "BLOCKED"
+  - "COMPLETED"
+
+priorities:
+  - "HIGH"
+  - "MEDIUM"
+  - "LOW"
+
+risk_levels:
+  - "HIGH"
+  - "MEDIUM"
+  - "LOW"
+

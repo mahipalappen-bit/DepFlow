@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DepFlow - Enterprise Dependency Management Platform</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNiIgZmlsbD0iIzMzNzJGRiIvPgo8cGF0aCBkPSJNOCAxMkgxNlYyMEg4VjEyWiIgZmlsbD0iI0ZGRkZGRiIvPgo8cGF0aCBkPSJNMTggMTJIMjZWMTZIMThWMTJaIiBmaWxsPSIjRkZGRkZGIi8+CjxwYXRoIGQ9Ik0xOCAxOEgyNFYyMkgxOFYxOFoiIGZpbGw9IiNGRkZGRkYiLz4KPC9zdmc+">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landingPage" class="landing-page">
+        <nav class="navbar">
+            <div class="depflow-logo">DepFlow</div>
+            <div class="nav-buttons">
+                <button class="btn-login" onclick="openLoginModal()">Login</button>
+                <button class="btn-get-started" onclick="scrollToDemo()">Get Started</button>
+            </div>
+        </nav>
+        
+        <div class="hero-section">
+            <h1 class="hero-title">DepFlow</h1>
+            <p class="hero-subtitle">Streamlined Software Lifecycle Management</p>
+            <p>Enterprise Dependency Management Platform for Modern Development Teams</p>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Login to DepFlow</h2>
+                <p>Access your dependency dashboard</p>
+            </div>
+            
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="submit" class="btn-submit btn-login">Login</button>
+            </form>
+            
+            <div class="quick-login">
+                <p>Quick Login:</p>
+                <button class="btn-quick-login" onclick="fillAdminCredentials()">Admin</button>
+                <button class="btn-quick-login" onclick="fillUserCredentials()">User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="dashboard-page">
+        <div class="dashboard-header">
+            <div class="depflow-logo">DepFlow Dashboard</div>
+            <div class="user-info">
+                <div id="userPanel">
+                    <span id="userWelcome">Welcome, User!</span>
+                    <button class="btn-logout" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard-container">
+            <!-- Left Sidebar with Counters -->
+            <div class="left-sidebar">
+                <div class="counters-section">
+                    <h3>📊 Dependency Stats</h3>
+                    
+                    <div class="counter-card total clickable" onclick="filterByStatus(null)" title="Show all dependencies">
+                        <div class="counter-number" id="totalCount">0</div>
+                        <div class="counter-label">Total Dependencies</div>
+                    </div>
+                    
+                    <div class="counter-card not-started clickable" onclick="filterByStatus('NOT STARTED')" title="Filter by Not Started">
+                        <div class="counter-number" id="notStartedCount">0</div>
+                        <div class="counter-label">Not Started</div>
+                    </div>
+                    
+                    <div class="counter-card in-progress clickable" onclick="filterByStatus('IN PROGRESS')" title="Filter by In Progress">
+                        <div class="counter-number" id="inProgressCount">0</div>
+                        <div class="counter-label">In Progress</div>
+                    </div>
+                    
+                    <div class="counter-card blocked clickable" onclick="filterByStatus('BLOCKED')" title="Filter by Blocked">
+                        <div class="counter-number" id="blockedCount">0</div>
+                        <div class="counter-label">Blocked</div>
+                    </div>
+                    
+                    <div class="counter-card completed clickable" onclick="filterByStatus('COMPLETED')" title="Filter by Completed">
+                        <div class="counter-number" id="completedCount">0</div>
+                        <div class="counter-label">Completed</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="content-header">
+                    <h2>Dependencies Management</h2>
+                    <button class="btn-add-dependency btn-add" onclick="showAddDependencyModal()">+ Add Dependency</button>
+                </div>
+                
+                <!-- Filtering Section -->
+                <div class="filters-section">
+                    <div class="filters-title">🔍 Filters & Search</div>
+                    <div class="filters-row">
+                        <div class="filter-group">
+                            <label>Search</label>
+                            <input type="text" id="searchInput" placeholder="Search dependencies..." oninput="applyFilters()">
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Team</label>
+                            <select id="teamFilter" onchange="applyFilters()">
+                                <option value="">All Teams</option>
+                                <option value="Crowdgen">Crowdgen</option>
+                                <option value="Annotation Tools">Annotation Tools</option>
+                                <option value="ADAP Platform">ADAP Platform</option>
+                                <option value="Product Management">Product Management</option>
+                                <option value="Quality Flow">Quality Flow</option>
+                                <option value="Data Collection">Data Collection</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Status</label>
+                            <select id="statusFilter" onchange="applyFilters()">
+                                <option value="">All Statuses</option>
+                                <option value="NOT STARTED">Not Started</option>
+                                <option value="IN PROGRESS">In Progress</option>
+                                <option value="BLOCKED">Blocked</option>
+                                <option value="COMPLETED">Completed</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>Priority</label>
+                            <select id="priorityFilter" onchange="applyFilters()">
+                                <option value="">All Priorities</option>
+                                <option value="HIGH">High</option>
+                                <option value="MEDIUM">Medium</option>
+                                <option value="LOW">Low</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label>&nbsp;</label>
+                            <button class="btn-clear-filters" onclick="clearAllFilters()">Clear All</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dependencies Table -->
+                <div class="dependencies-table">
+                    <div class="table-header">
+                        <div>Name & Description</div>
+                        <div>Team</div>
+                        <div>Status</div>
+                        <div>Priority</div>
+                        <div>Actions</div>
+                    </div>
+                    
+                    <div id="dependenciesContainer">
+                        <!-- Dependencies will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Dependency Modal -->
+    <div id="addDependencyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAddDependencyModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Add New Dependency</h2>
+                <p>Create a new dependency entry</p>
+            </div>
+            
+            <form id="addDependencyForm" onsubmit="handleAddDependency(event)">
+                <div class="form-group">
+                    <label for="addName">Name</label>
+                    <input type="text" id="addName" name="name" required maxlength="100">
+                </div>
+                
+                <div class="form-group">
+                    <label for="addDescription">Description</label>
+                    <textarea id="addDescription" name="description" required maxlength="500" rows="3" placeholder="Describe the dependency..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="addTeam">Team</label>
+                    <select id="addTeam" name="team" required>
+                        <option value="">Select Team</option>
+                        <option value="Crowdgen">Crowdgen</option>
+                        <option value="Annotation Tools">Annotation Tools</option>
+                        <option value="ADAP Platform">ADAP Platform</option>
+                        <option value="Product Management">Product Management</option>
+                        <option value="Quality Flow">Quality Flow</option>
+                        <option value="Data Collection">Data Collection</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="addStatus">Status</label>
+                    <select id="addStatus" name="status" required>
+                        <option value="NOT STARTED">Not Started</option>
+                        <option value="IN PROGRESS">In Progress</option>
+                        <option value="BLOCKED">Blocked</option>
+                        <option value="COMPLETED">Completed</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="addPriority">Priority</label>
+                    <select id="addPriority" name="priority" required>
+                        <option value="HIGH">High</option>
+                        <option value="MEDIUM" selected>Medium</option>
+                        <option value="LOW">Low</option>
+                    </select>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeAddDependencyModal()">Cancel</button>
+                    <button type="submit" class="btn-submit btn-add">Add Dependency</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Dependency Modal -->
+    <div id="editDependencyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeEditDependencyModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Edit Dependency</h2>
+                <p>Update dependency information</p>
+            </div>
+            
+            <form id="editDependencyForm" onsubmit="handleEditDependency(event)">
+                <input type="hidden" id="editId" name="id">
+                
+                <div class="form-group">
+                    <label for="editName">Name</label>
+                    <input type="text" id="editName" name="name" required maxlength="100">
+                </div>
+                
+                <div class="form-group">
+                    <label for="editDescription">Description</label>
+                    <textarea id="editDescription" name="description" required maxlength="500" rows="3"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editTeam">Team</label>
+                    <select id="editTeam" name="team" required>
+                        <option value="Crowdgen">Crowdgen</option>
+                        <option value="Annotation Tools">Annotation Tools</option>
+                        <option value="ADAP Platform">ADAP Platform</option>
+                        <option value="Product Management">Product Management</option>
+                        <option value="Quality Flow">Quality Flow</option>
+                        <option value="Data Collection">Data Collection</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editStatus">Status</label>
+                    <select id="editStatus" name="status" required>
+                        <option value="NOT STARTED">Not Started</option>
+                        <option value="IN PROGRESS">In Progress</option>
+                        <option value="BLOCKED">Blocked</option>
+                        <option value="COMPLETED">Completed</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="editPriority">Priority</label>
+                    <select id="editPriority" name="priority" required>
+                        <option value="HIGH">High</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="LOW">Low</option>
+                    </select>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel" onclick="closeEditDependencyModal()">Cancel</button>
+                    <button type="submit" class="btn-submit btn-edit">Update Dependency</button>
+                </div>
+            </form>
+        </div>
+      </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

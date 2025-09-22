@@ -1,0 +1,118 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: dep-mgmt-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: dependency_management
+    volumes:
+      - mongodb_data:/data/db
+      - ./deployment/scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - dep-mgmt-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: dep-mgmt-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - dep-mgmt-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: deployment/docker/Dockerfile.backend
+    container_name: dep-mgmt-backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DATABASE_URL: mongodb://mongodb:27017/dependency_management
+      MONGODB_URI: mongodb://mongodb:27017/dependency_management
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: your-super-secret-jwt-key-change-in-production
+      JWT_REFRESH_SECRET: your-super-secret-refresh-key-change-in-production
+      JWT_EXPIRATION: 24h
+      JWT_REFRESH_EXPIRATION: 7d
+      CORS_ORIGIN: http://localhost:3000
+      LOG_LEVEL: info
+      RATE_LIMIT_WINDOW_MS: 900000
+      RATE_LIMIT_MAX_REQUESTS: 1000
+      RATE_LIMIT_AUTH_MAX_REQUESTS: 10
+      BCRYPT_ROUNDS: 12
+      FEATURE_VULNERABILITY_SCANNING: true
+      FEATURE_EMAIL_NOTIFICATIONS: false
+      FEATURE_ADVANCED_ANALYTICS: true
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend/logs:/app/logs
+    networks:
+      - dep-mgmt-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend Application
+  frontend:
+    build:
+      context: .
+      dockerfile: deployment/docker/Dockerfile.frontend
+    container_name: dep-mgmt-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    environment:
+      VITE_API_URL: http://localhost:5000
+      VITE_SOCKET_URL: http://localhost:5000
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - dep-mgmt-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  mongodb_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  dep-mgmt-network:
+    driver: bridge
+
+

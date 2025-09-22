@@ -1,0 +1,38 @@
+# Robot Framework Test Dependencies
+robotframework==6.1.1
+robotframework-seleniumlibrary==6.2.0
+robotframework-requests==0.9.4
+robotframework-jsonlibrary==0.5
+robotframework-databaselibrary==1.4.1
+robotframework-faker==5.0.0
+
+# Web Browser Support
+selenium==4.15.2
+webdriver-manager==4.0.1
+
+# HTTP Testing
+requests==2.31.0
+urllib3==1.26.18
+
+# Email Testing
+imapclient==2.3.1
+email-validator==2.1.0
+
+# Reporting and Documentation
+robotframework-pabot==2.16.0
+robotframework-metrics==3.4.0
+robotframework-reportportal==5.4.1
+
+# Development and Debugging  
+robotframework-debuglibrary==2.3.0
+robotframework-browser==17.5.2
+
+# Data and Configuration
+pyyaml==6.0.1
+python-dotenv==1.0.0
+pandas==2.1.4
+
+# Testing Utilities
+pytest==7.4.3
+faker==20.1.0
+

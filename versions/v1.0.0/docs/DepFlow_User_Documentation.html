@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DepFlow - Enterprise User Documentation</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%231e3a8a'/%3E%3Cstop offset='100%25' style='stop-color:%233b82f6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23grad)'/%3E%3Ccircle cx='8' cy='8' r='2.5' fill='%23ffffff'/%3E%3Ccircle cx='16' cy='8' r='2.5' fill='%23ffffff'/%3E%3Ccircle cx='24' cy='8' r='2.5' fill='%23ffffff'/%3E%3Ccircle cx='12' cy='16' r='2.5' fill='%23e0e7ff'/%3E%3Ccircle cx='20' cy='16' r='2.5' fill='%23e0e7ff'/%3E%3Ccircle cx='8' cy='24' r='2.5' fill='%23ffffff'/%3E%3Ccircle cx='16' cy='24' r='2.5' fill='%23ffffff'/%3E%3Ccircle cx='24' cy='24' r='2.5' fill='%23ffffff'/%3E%3Cline x1='8' y1='8' x2='12' y2='16' stroke='%23ffffff' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='16' y1='8' x2='12' y2='16' stroke='%23ffffff' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='16' y1='8' x2='20' y2='16' stroke='%23ffffff' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='24' y1='8' x2='20' y2='16' stroke='%23ffffff' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='12' y1='16' x2='8' y2='24' stroke='%23ffffff' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='12' y1='16' x2='16' y2='24' stroke='%23ffffff' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='20' y1='16' x2='16' y2='24' stroke='%23ffffff' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='20' y1='16' x2='24' y2='24' stroke='%23ffffff' stroke-width='1.5' opacity='0.9'/%3E%3C/svg%3E">
+    
+    <style>
+        /* Modern Professional Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0px) translateY(0px); }
+            100% { transform: translateX(-60px) translateY(-60px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ffffff'/%3E%3Cstop offset='100%25' style='stop-color:%23e0e7ff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23grad)'/%3E%3Ccircle cx='8' cy='8' r='2.5' fill='%231e3a8a'/%3E%3Ccircle cx='16' cy='8' r='2.5' fill='%231e3a8a'/%3E%3Ccircle cx='24' cy='8' r='2.5' fill='%231e3a8a'/%3E%3Ccircle cx='12' cy='16' r='2.5' fill='%233b82f6'/%3E%3Ccircle cx='20' cy='16' r='2.5' fill='%233b82f6'/%3E%3Ccircle cx='8' cy='24' r='2.5' fill='%231e3a8a'/%3E%3Ccircle cx='16' cy='24' r='2.5' fill='%231e3a8a'/%3E%3Ccircle cx='24' cy='24' r='2.5' fill='%231e3a8a'/%3E%3Cline x1='8' y1='8' x2='12' y2='16' stroke='%233b82f6' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='16' y1='8' x2='12' y2='16' stroke='%233b82f6' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='16' y1='8' x2='20' y2='16' stroke='%233b82f6' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='24' y1='8' x2='20' y2='16' stroke='%233b82f6' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='12' y1='16' x2='8' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='12' y1='16' x2='16' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='20' y1='16' x2='16' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.9'/%3E%3Cline x1='20' y1='16' x2='24' y2='24' stroke='%233b82f6' stroke-width='1.5' opacity='0.9'/%3E%3C/svg%3E") no-repeat center;
+            background-size: contain;
+        }
+
+        .logo-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 1;
+            margin: 0;
+            color: #e0e7ff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Navigation */
+        .nav {
+            background: #f8fafc;
+            border-bottom: 2px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0 2rem;
+        }
+
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .nav a:hover, .nav a.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        /* Content */
+        .content {
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3 {
+            color: #1e293b;
+            margin-bottom: 0.75rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 0.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: #3b82f6;
+            margin-top: 1.5rem;
+        }
+
+        h4 {
+            font-size: 1.1rem;
+            color: #1e293b;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .card-icon.primary { background: #3b82f6; }
+        .card-icon.success { background: #10b981; }
+        .card-icon.warning { background: #f59e0b; }
+        .card-icon.danger { background: #ef4444; }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .code-block .comment { color: #94a3b8; }
+        .code-block .keyword { color: #60a5fa; }
+        .code-block .string { color: #34d399; }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* Tables */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .table th {
+            background: #3b82f6;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        /* Steps */
+        .steps {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps li {
+            counter-increment: step-counter;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+        }
+
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            background: #3b82f6;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Screenshots placeholder */
+        .screenshot {
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%);
+            color: #64748b;
+            margin: 1.5rem 0;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .screenshot::before {
+            content: '🖼️';
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+        }
+
+        .screenshot-content {
+            background: white;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1rem;
+            width: 90%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #3b82f6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header, .content, .nav-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .header {
+                padding: 0.75rem 1rem;
+            }
+
+            .nav ul {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                font-size: 11px;
+            }
+
+            .nav a {
+                padding: 0.25rem 0.4rem;
+                font-size: 11px;
+            }
+
+            .logo {
+                gap: 0.5rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .logo-text h1 {
+                font-size: 1.2rem;
+            }
+
+            .logo-text p {
+                font-size: 0.7rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            .screenshot {
+                padding: 1rem;
+                min-height: 150px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .nav { display: none; }
+            .section { display: block !important; }
+            .header::before { display: none; }
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">
+                        <h1>DepFlow</h1>
+                        <p>Enterprise Dependency Management Platform</p>
+                    </div>
+                </div>
+                <div class="version-badge">Version 1.0.0</div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="nav-container">
+                <ul>
+                    <li><a href="#overview" class="nav-link active">Overview</a></li>
+                    <li><a href="#getting-started" class="nav-link">Quick Start</a></li>
+                    <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                    <li><a href="#dependencies" class="nav-link">Dependencies</a></li>
+                    <li><a href="#search-filter" class="nav-link">Search & Filter</a></li>
+                    <li><a href="#notifications" class="nav-link">Notifications</a></li>
+                    <li><a href="#api" class="nav-link">API</a></li>
+                    <li><a href="#support" class="nav-link">Support</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Content -->
+        <main class="content">
+            <!-- Overview Section -->
+            <section id="overview" class="section active">
+                <h2>Platform Overview</h2>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon primary">🚀</div>
+                        <div>
+                            <h3>Welcome to DepFlow</h3>
+                            <p>Your enterprise solution for dependency management</p>
+                        </div>
+                    </div>
+                    <p>DepFlow is a comprehensive enterprise platform designed to streamline software dependency management across your organization. Built with modern web technologies, it provides real-time tracking, team collaboration, and automated notifications to ensure your development lifecycle runs smoothly.</p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="card-icon primary">🔐</div>
+                        <h3>Secure Authentication</h3>
+                        <p>Role-based access control with admin and user permissions. Secure login with session management.</p>
+                        <span class="badge badge-success">Enterprise Ready</span>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon success">📊</div>
+                        <h3>Real-time Dashboard</h3>
+                        <p>Interactive counters, visual dependency overview, and instant status updates across all projects.</p>
+                        <span class="badge badge-info">Live Updates</span>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon warning">🔍</div>
+                        <h3>Advanced Search</h3>
+                        <p>Powerful search capabilities with multi-criteria filtering by team, status, priority, and more.</p>
+                        <span class="badge badge-success">Optimized</span>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon danger">📧</div>
+                        <h3>Email Notifications</h3>
+                        <p>Automated notifications for team assignments, status changes, and dependency updates.</p>
+                        <span class="badge badge-warning">Configurable</span>
+                    </div>
+                </div>
+
+                <h3>System Requirements</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Minimum Requirement</th>
+                            <th>Recommended</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Web Browser</td>
+                            <td>Chrome 90+, Firefox 88+, Safari 14+, Edge 90+</td>
+                            <td>Latest versions</td>
+                        </tr>
+                        <tr>
+                            <td>Screen Resolution</td>
+                            <td>1024×768</td>
+                            <td>1920×1080</td>
+                        </tr>
+                        <tr>
+                            <td>Network</td>
+                            <td>Internet connection required</td>
+                            <td>Stable broadband</td>
+                        </tr>
+                        <tr>
+                            <td>JavaScript</td>
+                            <td>Enabled (required)</td>
+                            <td>Enabled</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Getting Started Section -->
+            <section id="getting-started" class="section">
+                <h2>Quick Start Guide</h2>
+                
+                <div class="card">
+                    <h3>Quick Start Guide</h3>
+                    <p>Follow these steps to begin using DepFlow effectively in your organization.</p>
+                </div>
+
+                <ol class="steps">
+                    <li>
+                        <h4>Access the Platform</h4>
+                        <p>Navigate to the DepFlow application URL provided by your administrator. You'll see the professional landing page with the DepFlow logo and "Get Started" options.</p>
+                        <div class="screenshot">
+                            DepFlow Landing Page
+                            <div class="screenshot-content">
+                                <strong>Visual Elements:</strong><br>
+                                • Professional DepFlow logo with network dependency visualization<br>
+                                • "Streamlined Software Lifecycle Management" tagline<br>
+                                • Login and Get Started buttons prominently displayed<br>
+                                • Modern gradient background with enterprise styling<br>
+                                • Responsive design adapting to screen size
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <h4>Login to Your Account</h4>
+                        <p>Click the "Login" button to access the secure login modal. Enter your credentials or use the "Fill Admin Credentials" option for demo purposes.</p>
+                        <div class="code-block">
+                            <span class="comment">// Demo credentials for testing</span><br>
+                            Username: <span class="string">admin@depflow.com</span><br>
+                            Password: <span class="string">admin123</span>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <h4>Explore the Dashboard</h4>
+                        <p>After successful login, you'll see the main dashboard with real-time counters, search tools, and the dependencies table. The interface is designed for intuitive navigation.</p>
+                        <div class="screenshot">
+                            Main Dashboard Interface
+                            <div class="screenshot-content">
+                                <strong>Dashboard Components:</strong><br>
+                                • Left sidebar: Real-time counters (Total: 0, In Progress: 0, Blocked: 0, etc.)<br>
+                                • Header: DepFlow branding with compact user profile panel<br>
+                                • Main area: Search/filter controls and dependency table<br>
+                                • Interactive elements: Clickable counters, filterable table<br>
+                                • Status indicators: Color-coded priority and status badges
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <h4>Create Your First Dependency</h4>
+                        <p>Click "Add New Dependency" to open the creation modal. Fill in the required information including name, description, and team assignment.</p>
+                        <div class="screenshot">
+                            Add Dependency Modal
+                            <div class="screenshot-content">
+                                <strong>Form Fields Available:</strong><br>
+                                • Dependency Name* (required): Text input with validation<br>
+                                • Description* (required): Textarea with min 10 characters<br>
+                                • Responsible Team*: Dropdown with all configured teams<br>
+                                • Status: Dropdown (NOT STARTED, IN PROGRESS, BLOCKED, COMPLETED)<br>
+                                • Priority: Dropdown (HIGH, MEDIUM, LOW)<br>
+                                • Risk Level: Dropdown (HIGH, MEDIUM, LOW)<br>
+                                • JIRA Ticket: Optional URL field for tracking integration<br>
+                                • Actions: Save (primary button) and Cancel options
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon warning">⚠️</div>
+                        <div>
+                            <h4>Important First Steps</h4>
+                        </div>
+                    </div>
+                    <ul>
+                        <li><strong>Change Default Credentials:</strong> Update the admin password for production use</li>
+                        <li><strong>Configure Email:</strong> Set up Gmail credentials for notifications (optional)</li>
+                        <li><strong>Team Setup:</strong> Review and update team owner mappings</li>
+                        <li><strong>User Training:</strong> Share this documentation with your team</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section">
+                <h2>Dashboard Navigation</h2>
+                
+                <div class="card">
+                    <h3>Dashboard Overview</h3>
+                    <p>The DepFlow dashboard is your central command center for dependency management. It provides real-time insights and quick access to all platform features.</p>
+                </div>
+
+                <h3>Dashboard Components</h3>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="card-icon primary">📊</div>
+                        <h4>Real-time Counters</h4>
+                        <p>Interactive counters showing:</p>
+                        <ul>
+                            <li><strong>Total Dependencies:</strong> Complete count</li>
+                            <li><strong>In Progress:</strong> Currently active items</li>
+                            <li><strong>Blocked:</strong> Items waiting for resolution</li>
+                            <li><strong>Completed:</strong> Finished dependencies</li>
+                            <li><strong>Not Started:</strong> Pending items</li>
+                        </ul>
+                        <p><em>💡 Pro Tip: Click any counter to filter the main table!</em></p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon success">🔍</div>
+                        <h4>Search & Filter Panel</h4>
+                        <p>Powerful tools for finding dependencies:</p>
+                        <ul>
+                            <li><strong>Text Search:</strong> Search names and descriptions</li>
+                            <li><strong>Team Filter:</strong> Filter by responsible team</li>
+                            <li><strong>Status Filter:</strong> Filter by current status</li>
+                            <li><strong>Priority Filter:</strong> Filter by priority level</li>
+                            <li><strong>Clear All:</strong> Reset all filters instantly</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon warning">📋</div>
+                        <h4>Dependencies Table</h4>
+                        <p>Complete dependency listing with:</p>
+                        <ul>
+                            <li><strong>Name & Description:</strong> Clear identification</li>
+                            <li><strong>Team Assignment:</strong> Current responsible team</li>
+                            <li><strong>Status & Priority:</strong> Current state</li>
+                            <li><strong>Risk Level:</strong> Associated risk assessment</li>
+                            <li><strong>Actions:</strong> Edit, delete, and manage options</li>
+                            <li><strong>Last Updated:</strong> Recent activity timestamp</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon danger">👤</div>
+                        <h4>User Profile Panel</h4>
+                        <p>Located in the top-right corner:</p>
+                        <ul>
+                            <li><strong>User Avatar:</strong> Your profile image/initial</li>
+                            <li><strong>Name & Role:</strong> Display name and permissions</li>
+                            <li><strong>Logout Button:</strong> Secure session termination</li>
+                        </ul>
+                        <p><span class="badge badge-info">Compact Design</span> Optimized for screen space</p>
+                    </div>
+                </div>
+
+                <h3>Navigation Tips</h3>
+                <div class="card">
+                    <ul>
+                        <li><strong>Counter Filtering:</strong> Click any counter card to instantly filter results</li>
+                        <li><strong>Combined Filters:</strong> Use multiple filters simultaneously for precise results</li>
+                        <li><strong>Real-time Updates:</strong> Counters update immediately when you make changes</li>
+                        <li><strong>Responsive Design:</strong> Interface adapts to different screen sizes</li>
+                        <li><strong>Keyboard Navigation:</strong> Use Tab key to navigate between elements</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Dependencies Section -->
+            <section id="dependencies" class="section">
+                <h2>Managing Dependencies</h2>
+                
+                <div class="card">
+                    <h3>Dependency Lifecycle Management</h3>
+                    <p>DepFlow provides comprehensive tools for managing dependencies throughout their entire lifecycle, from creation to completion.</p>
+                </div>
+
+                <h3>Creating Dependencies</h3>
+                <ol class="steps">
+                    <li>
+                        <h4>Click "Add New Dependency"</h4>
+                        <p>Located in the top-right of the main content area. This opens the dependency creation modal with all required fields.</p>
+                    </li>
+                    
+                    <li>
+                        <h4>Fill Required Information</h4>
+                        <p>Complete the following mandatory fields:</p>
+                        <ul>
+                            <li><strong>Dependency Name:</strong> Clear, descriptive name (minimum 2 characters)</li>
+                            <li><strong>Description:</strong> Detailed explanation (minimum 10 characters)</li>
+                            <li><strong>Responsible Team:</strong> Select from available teams</li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <h4>Set Status and Priority</h4>
+                        <p>Configure optional settings:</p>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Options</th>
+                                    <th>Default</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>NOT STARTED, IN PROGRESS, BLOCKED, COMPLETED</td>
+                                    <td>NOT STARTED</td>
+                                </tr>
+                                <tr>
+                                    <td>Priority</td>
+                                    <td>HIGH, MEDIUM, LOW</td>
+                                    <td>MEDIUM</td>
+                                </tr>
+                                <tr>
+                                    <td>Risk Level</td>
+                                    <td>HIGH, MEDIUM, LOW</td>
+                                    <td>LOW</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </li>
+                    
+                    <li>
+                        <h4>Add Additional Information</h4>
+                        <p>Optionally include:</p>
+                        <ul>
+                            <li><strong>JIRA Ticket:</strong> Link to related JIRA issue for tracking</li>
+                            <li><strong>Additional Notes:</strong> Any relevant context or requirements</li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <h4>Save and Notify</h4>
+                        <p>Click "Save" to create the dependency. The system will automatically:</p>
+                        <ul>
+                            <li>✅ Create the dependency record</li>
+                            <li>📧 Send email notification to team owner</li>
+                            <li>📊 Update real-time counters</li>
+                            <li>✨ Display success confirmation</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>Editing Dependencies</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon primary">✏️</div>
+                        <div>
+                            <h4>Edit Existing Dependencies</h4>
+                            <p>Modify dependency details as requirements change</p>
+                        </div>
+                    </div>
+                    <ol>
+                        <li><strong>Locate the Dependency:</strong> Use search or browse the table</li>
+                        <li><strong>Click Edit Button:</strong> Look for the ✏️ icon in the Actions column</li>
+                        <li><strong>Modify Fields:</strong> Update any information as needed</li>
+                        <li><strong>Team Changes:</strong> If changing teams, email notification is sent</li>
+                        <li><strong>Save Changes:</strong> Click "Save" to apply updates</li>
+                    </ol>
+                    
+                    <p><strong>Permission Note:</strong> You can only edit dependencies you created unless you're an administrator.</p>
+                </div>
+
+                <h3>Status Management</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <span class="badge badge-info">NOT STARTED</span>
+                        <h4>Not Started</h4>
+                        <p>Newly created dependencies waiting to begin work. Default status for all new items.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="badge badge-warning">IN PROGRESS</span>
+                        <h4>In Progress</h4>
+                        <p>Dependencies currently being worked on by the assigned team. Active development phase.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="badge badge-warning">BLOCKED</span>
+                        <h4>Blocked</h4>
+                        <p>Dependencies stuck due to external factors, waiting for resolution or clarification.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <span class="badge badge-success">COMPLETED</span>
+                        <h4>Completed</h4>
+                        <p>Successfully finished dependencies. Move to this status only when fully complete.</p>
+                    </div>
+                </div>
+
+                <h3>Best Practices</h3>
+                <div class="card">
+                    <h4>Effective Dependency Management</h4>
+                    <ul>
+                        <li><strong>Naming Convention:</strong> Use clear, descriptive names that explain the purpose</li>
+                        <li><strong>Detailed Descriptions:</strong> Include technical requirements and context</li>
+                        <li><strong>Regular Updates:</strong> Keep status current as work progresses</li>
+                        <li><strong>Team Communication:</strong> Use JIRA links and detailed descriptions</li>
+                        <li><strong>Priority Setting:</strong> Use HIGH for critical path items, MEDIUM for standard work</li>
+                        <li><strong>Risk Assessment:</strong> Consider technical complexity and external dependencies</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Search & Filter Section -->
+            <section id="search-filter" class="section">
+                <h2>Search & Filtering</h2>
+                
+                <div class="card">
+                    <h3>Advanced Search Capabilities</h3>
+                    <p>DepFlow provides powerful search and filtering tools to help you quickly find specific dependencies among hundreds or thousands of items.</p>
+                </div>
+
+                <h3>Text Search</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon primary">🔍</div>
+                        <div>
+                            <h4>Smart Text Search</h4>
+                            <p>Real-time search across dependency names and descriptions</p>
+                        </div>
+                    </div>
+                    
+                    <h4>Search Features:</h4>
+                    <ul>
+                        <li><strong>Real-time Results:</strong> Updates as you type</li>
+                        <li><strong>Case Insensitive:</strong> Finds matches regardless of capitalization</li>
+                        <li><strong>Partial Matching:</strong> "React" finds "React Component Library"</li>
+                        <li><strong>Multi-field Search:</strong> Searches both names and descriptions</li>
+                        <li><strong>Special Characters:</strong> Handles technical terms with symbols</li>
+                    </ul>
+                    
+                    <h4>Search Tips:</h4>
+                    <div class="code-block">
+                        <span class="comment">// Example searches</span><br>
+                        <span class="string">"API"</span> <span class="comment">→ Finds all API-related dependencies</span><br>
+                        <span class="string">"React"</span> <span class="comment">→ Finds React components and libraries</span><br>
+                        <span class="string">"auth"</span> <span class="comment">→ Finds authentication-related items</span><br>
+                        <span class="string">"JWT"</span> <span class="comment">→ Finds JSON Web Token implementations</span>
+                    </div>
+                </div>
+
+                <h3>Filter Options</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="card-icon success">👥</div>
+                        <h4>Team Filter</h4>
+                        <p>Filter by responsible team:</p>
+                        <ul>
+                            <li>Quality flow</li>
+                            <li>Annotation tools</li>
+                            <li>Data Collection</li>
+                            <li>ADAP Platform</li>
+                            <li>CrowdGen</li>
+                            <li>Mercury</li>
+                            <li>Marketing Cloud</li>
+                            <li>Data Engineering</li>
+                            <li>Analytics</li>
+                            <li>Product Management</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon warning">📊</div>
+                        <h4>Status Filter</h4>
+                        <p>Filter by current status:</p>
+                        <ul>
+                            <li><span class="badge badge-info">NOT STARTED</span> New dependencies</li>
+                            <li><span class="badge badge-warning">IN PROGRESS</span> Active work</li>
+                            <li><span class="badge badge-warning">BLOCKED</span> Stuck items</li>
+                            <li><span class="badge badge-success">COMPLETED</span> Finished work</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon danger">⚡</div>
+                        <h4>Priority Filter</h4>
+                        <p>Filter by priority level:</p>
+                        <ul>
+                            <li><strong>HIGH:</strong> Critical path items</li>
+                            <li><strong>MEDIUM:</strong> Standard work</li>
+                            <li><strong>LOW:</strong> Nice-to-have features</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon primary">📊</div>
+                        <h4>Counter Filters</h4>
+                        <p>Click sidebar counters to filter:</p>
+                        <ul>
+                            <li><strong>Total:</strong> Show all dependencies</li>
+                            <li><strong>In Progress:</strong> Active items only</li>
+                            <li><strong>Blocked:</strong> Stuck items only</li>
+                            <li><strong>Completed:</strong> Finished items only</li>
+                            <li><strong>Not Started:</strong> Pending items only</li>
+                        </ul>
+                        <p><em>Click again to toggle off</em></p>
+                    </div>
+                </div>
+
+                <h3>Advanced Filtering Techniques</h3>
+                <div class="card">
+                    <h4>Combined Filters</h4>
+                    <p>Use multiple filters simultaneously for precise results:</p>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Filter Combination</th>
+                                <th>Use Case</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Search + Team</td>
+                                <td>Find specific items within a team</td>
+                                <td>Search "API" + Team "Data Engineering"</td>
+                            </tr>
+                            <tr>
+                                <td>Status + Priority</td>
+                                <td>Focus on urgent items</td>
+                                <td>Status "BLOCKED" + Priority "HIGH"</td>
+                            </tr>
+                            <tr>
+                                <td>Team + Status + Priority</td>
+                                <td>Team-specific urgent items</td>
+                                <td>Team "Quality flow" + Status "IN PROGRESS" + Priority "HIGH"</td>
+                            </tr>
+                            <tr>
+                                <td>Search + Multiple Filters</td>
+                                <td>Highly specific searches</td>
+                                <td>Search "React" + Team "ADAP Platform" + Status "NOT STARTED"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Filter Management</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon warning">🔄</div>
+                        <div>
+                            <h4>Managing Active Filters</h4>
+                        </div>
+                    </div>
+                    
+                    <h4>Clear Filters:</h4>
+                    <ul>
+                        <li><strong>Clear All Button:</strong> Removes all active filters instantly</li>
+                        <li><strong>Individual Clear:</strong> Reset dropdown filters to "All" options</li>
+                        <li><strong>Search Clear:</strong> Delete text in search field</li>
+                        <li><strong>Counter Clear:</strong> Click active counter again to deselect</li>
+                    </ul>
+                    
+                    <h4>Filter Persistence:</h4>
+                    <ul>
+                        <li><strong>Session Persistence:</strong> Filters remain during browser session</li>
+                        <li><strong>Real-time Updates:</strong> Results update instantly as you type or select</li>
+                        <li><strong>Counter Integration:</strong> Counters always show total counts, not filtered counts</li>
+                    </ul>
+                </div>
+
+                <h3>Search Best Practices</h3>
+                <div class="card">
+                    <h4>Effective Search Strategies</h4>
+                    <ul>
+                        <li><strong>Start Broad:</strong> Begin with general terms, then narrow down</li>
+                        <li><strong>Use Keywords:</strong> Search for technology names, project codes, or team names</li>
+                        <li><strong>Combine Filters:</strong> Use multiple criteria for precise results</li>
+                        <li><strong>Clear Regularly:</strong> Reset filters between different searches</li>
+                        <li><strong>Save Patterns:</strong> Remember effective filter combinations for recurring searches</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Notifications Section -->
+            <section id="notifications" class="section">
+                <h2>Email Notifications</h2>
+                
+                <div class="card">
+                    <h3>Automated Notification System</h3>
+                    <p>DepFlow automatically sends professional email notifications to keep team owners informed about dependency assignments and changes.</p>
+                </div>
+
+                <h3>When Emails Are Sent</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="card-icon primary">📧</div>
+                        <h4>New Assignment</h4>
+                        <p><strong>Trigger:</strong> When a new dependency is created and assigned to a team</p>
+                        <p><strong>Recipient:</strong> Team owner configured in the system</p>
+                        <p><strong>Subject:</strong> "Dependency Assigned: [Dependency Name]"</p>
+                        <p><strong>Content:</strong> Full dependency details including description, priority, risk level, and JIRA link</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon warning">🔄</div>
+                        <h4>Team Reassignment</h4>
+                        <p><strong>Trigger:</strong> When a dependency is moved from one team to another</p>
+                        <p><strong>Recipient:</strong> New team owner</p>
+                        <p><strong>Subject:</strong> "Dependency Reassigned: [Dependency Name]"</p>
+                        <p><strong>Content:</strong> Updated dependency details with reassignment notification</p>
+                    </div>
+                </div>
+
+                <h3>Email Content Structure</h3>
+                <div class="card">
+                    <h4>Professional Email Format</h4>
+                    <div class="code-block">
+                        <span class="comment">/* Email Template Structure */</span><br>
+                        <strong>Header:</strong> DepFlow branding and logo<br>
+                        <strong>Subject:</strong> Clear action and dependency name<br>
+                        <strong>Body:</strong><br>
+                        &nbsp;&nbsp;• Dependency name and description<br>
+                        &nbsp;&nbsp;• Team assignment details<br>
+                        &nbsp;&nbsp;• Status, priority, and risk level<br>
+                        &nbsp;&nbsp;• JIRA ticket link (if provided)<br>
+                        &nbsp;&nbsp;• Timestamp of assignment<br>
+                        <strong>Footer:</strong> Automated notification disclaimer
+                    </div>
+                </div>
+
+                <h3>Team Owner Configuration</h3>
+                <div class="card">
+                    <h4>Current Team Mappings</h4>
+                    <p>Email notifications are sent to the configured team owners. Contact your administrator to update these mappings:</p>
+                    
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Team Name</th>
+                                <th>Current Owner Email</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Quality flow</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Annotation tools</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Data Collection</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>ADAP Platform</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>CrowdGen</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mercury</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Marketing Cloud</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Data Engineering</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Analytics</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Product Management</td>
+                                <td>mmahipal.reddy@gmail.com</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>Email Delivery & Troubleshooting</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon warning">⚠️</div>
+                        <div>
+                            <h4>Not Receiving Emails?</h4>
+                        </div>
+                    </div>
+                    
+                    <ol class="steps">
+                        <li>
+                            <h4>Check Spam/Junk Folder</h4>
+                            <p>Automated emails may be filtered by email providers. Look for emails from "DepFlow" or with "Dependency" in the subject.</p>
+                        </li>
+                        
+                        <li>
+                            <h4>Verify Email Address</h4>
+                            <p>Confirm your email address is correctly configured in the team owner mappings. Contact your administrator if changes are needed.</p>
+                        </li>
+                        
+                        <li>
+                            <h4>Check Email Server</h4>
+                            <p>Corporate email servers may have restrictions on automated emails. Contact your IT department if emails are being blocked.</p>
+                        </li>
+                        
+                        <li>
+                            <h4>Test Email Function</h4>
+                            <p>Administrators can test email delivery using the API endpoint:</p>
+                            <div class="code-block">
+                                <span class="keyword">curl</span> -X POST http://localhost:3000/api/test-email \<br>
+                                &nbsp;&nbsp;-H <span class="string">"Content-Type: application/json"</span> \<br>
+                                &nbsp;&nbsp;-d <span class="string">'{"team": "Your Team Name"}'</span>
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <h3>Email Best Practices</h3>
+                <div class="card">
+                    <h4>Managing Email Notifications</h4>
+                    <ul>
+                        <li><strong>Team Lead Responsibility:</strong> Team owners should monitor for new assignments</li>
+                        <li><strong>Quick Response:</strong> Acknowledge new dependencies promptly</li>
+                        <li><strong>Status Updates:</strong> Keep dependency status current to minimize notifications</li>
+                        <li><strong>Email Rules:</strong> Set up email rules to organize DepFlow notifications</li>
+                        <li><strong>Distribution Lists:</strong> Consider using team distribution lists instead of individual emails</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- API Section -->
+            <section id="api" class="section">
+                <h2>API Reference</h2>
+                
+                <div class="card">
+                    <h3>RESTful API Integration</h3>
+                    <p>DepFlow provides a comprehensive REST API for programmatic access to all platform features, enabling seamless integration with your existing development tools and workflows.</p>
+                </div>
+
+                <h3>API Endpoints</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="card-icon primary">📧</div>
+                        <h4>Test Email Notifications</h4>
+                        <p><strong>Endpoint:</strong> <code>POST /api/test-email</code></p>
+                        <p><strong>Purpose:</strong> Send test email to verify configuration</p>
+                        <div class="code-block">
+                            <span class="keyword">curl</span> -X POST http://localhost:3000/api/test-email \<br>
+                            &nbsp;&nbsp;-H <span class="string">"Content-Type: application/json"</span> \<br>
+                            &nbsp;&nbsp;-d <span class="string">'{"team": "Annotation tools"}'</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon success">✨</div>
+                        <h4>Create Dependencies</h4>
+                        <p><strong>Endpoint:</strong> <code>POST /api/dependencies</code></p>
+                        <p><strong>Purpose:</strong> Create new dependency with email notification</p>
+                        <div class="code-block">
+                            <span class="keyword">curl</span> -X POST http://localhost:3000/api/dependencies \<br>
+                            &nbsp;&nbsp;-H <span class="string">"Content-Type: application/json"</span> \<br>
+                            &nbsp;&nbsp;-d <span class="string">'{
+                              "name": "React Auth Component",
+                              "description": "User authentication component",
+                              "team": "Data Engineering",
+                              "priority": "HIGH",
+                              "createdBy": "api@company.com"
+                            }'</span>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon warning">🔄</div>
+                        <h4>Update Dependencies</h4>
+                        <p><strong>Endpoint:</strong> <code>PUT /api/dependencies/:id</code></p>
+                        <p><strong>Purpose:</strong> Update existing dependency details</p>
+                        <div class="code-block">
+                            <span class="keyword">curl</span> -X PUT http://localhost:3000/api/dependencies/1 \<br>
+                            &nbsp;&nbsp;-H <span class="string">"Content-Type: application/json"</span> \<br>
+                            &nbsp;&nbsp;-d <span class="string">'{
+                              "name": "Updated Component",
+                              "team": "Analytics",
+                              "status": "IN PROGRESS",
+                              "originalTeam": "Data Engineering"
+                            }'</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>Response Format</h3>
+                <div class="card">
+                    <h4>Standard API Response</h4>
+                    <div class="code-block">
+                        <span class="comment">// Successful response</span><br>
+                        {<br>
+                        &nbsp;&nbsp;<span class="string">"success"</span>: <span class="keyword">true</span>,<br>
+                        &nbsp;&nbsp;<span class="string">"message"</span>: <span class="string">"Dependency created successfully"</span>,<br>
+                        &nbsp;&nbsp;<span class="string">"dependency"</span>: {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"name"</span>: <span class="string">"React Auth Component"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"description"</span>: <span class="string">"User authentication component"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"team"</span>: <span class="string">"Data Engineering"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"status"</span>: <span class="string">"NOT STARTED"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"priority"</span>: <span class="string">"HIGH"</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"lastUpdated"</span>: <span class="string">"2025-09-22T04:27:54.854Z"</span><br>
+                        &nbsp;&nbsp;},<br>
+                        &nbsp;&nbsp;<span class="string">"emailSent"</span>: <span class="keyword">true</span>,<br>
+                        &nbsp;&nbsp;<span class="string">"emailMessage"</span>: <span class="string">"Email sent to mmahipal.reddy@gmail.com"</span><br>
+                        }
+                    </div>
+                </div>
+
+                <h3>Integration Examples</h3>
+                <div class="card">
+                    <h4>JavaScript/Node.js Integration</h4>
+                    <div class="code-block">
+                        <span class="comment">// Example: Create dependency from CI/CD pipeline</span><br>
+                        <span class="keyword">const</span> response = <span class="keyword">await</span> fetch(<span class="string">'/api/dependencies'</span>, {<br>
+                        &nbsp;&nbsp;<span class="string">method</span>: <span class="string">'POST'</span>,<br>
+                        &nbsp;&nbsp;<span class="string">headers</span>: { <span class="string">'Content-Type'</span>: <span class="string">'application/json'</span> },<br>
+                        &nbsp;&nbsp;<span class="string">body</span>: JSON.stringify({<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">name</span>: <span class="string">'API Rate Limiting'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">description</span>: <span class="string">'Implement rate limiting for API endpoints'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">team</span>: <span class="string">'Data Engineering'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">priority</span>: <span class="string">'MEDIUM'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="string">createdBy</span>: <span class="string">'ci-cd@company.com'</span><br>
+                        &nbsp;&nbsp;})<br>
+                        });<br>
+                        <br>
+                        <span class="keyword">const</span> result = <span class="keyword">await</span> response.json();<br>
+                        console.log(<span class="string">'Dependency created:'</span>, result.dependency.name);
+                    </div>
+                </div>
+
+                <h3>Error Handling</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Status Code</th>
+                            <th>Meaning</th>
+                            <th>Example Response</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>200</td>
+                            <td>Success</td>
+                            <td><code>{"success": true, "message": "Operation completed"}</code></td>
+                        </tr>
+                        <tr>
+                            <td>400</td>
+                            <td>Bad Request</td>
+                            <td><code>{"success": false, "message": "Name is required"}</code></td>
+                        </tr>
+                        <tr>
+                            <td>500</td>
+                            <td>Server Error</td>
+                            <td><code>{"success": false, "message": "Email configuration error"}</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon primary">📘</div>
+                        <div>
+                            <h4>Complete API Documentation</h4>
+                            <p>For comprehensive API documentation, examples, and integration guides</p>
+                        </div>
+                    </div>
+                    <p>For complete API reference including all endpoints, authentication methods, and advanced integration examples, please refer to the <strong>API_Documentation.md</strong> file in your documentation folder.</p>
+                    <a href="#" class="btn btn-primary">View Complete API Docs</a>
+                </div>
+            </section>
+
+            <!-- Support Section -->
+            <section id="support" class="section">
+                <h2>Support & Resources</h2>
+                
+                <div class="card">
+                    <h3>Getting Help</h3>
+                    <p>DepFlow provides comprehensive support resources to ensure your success with the platform.</p>
+                </div>
+
+                <h3>Support Channels</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="card-icon primary">📖</div>
+                        <h4>Documentation</h4>
+                        <p>Comprehensive guides and references:</p>
+                        <ul>
+                            <li><strong>User Manual:</strong> Complete feature guide</li>
+                            <li><strong>API Documentation:</strong> Integration reference</li>
+                            <li><strong>Installation Guide:</strong> Setup instructions</li>
+                            <li><strong>Best Practices:</strong> Usage recommendations</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">View Documentation</a>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon success">👥</div>
+                        <h4>Administrator Support</h4>
+                        <p>Your internal support team:</p>
+                        <ul>
+                            <li><strong>System Administrator:</strong> Platform configuration</li>
+                            <li><strong>IT Helpdesk:</strong> Technical issues</li>
+                            <li><strong>Team Leads:</strong> Process questions</li>
+                            <li><strong>Training Coordinators:</strong> User education</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon warning">🔧</div>
+                        <h4>Technical Support</h4>
+                        <p>For technical issues and bugs:</p>
+                        <ul>
+                            <li><strong>Error Reporting:</strong> Submit detailed bug reports</li>
+                            <li><strong>Performance Issues:</strong> Browser and connectivity problems</li>
+                            <li><strong>Integration Help:</strong> API and external system integration</li>
+                            <li><strong>Configuration:</strong> Email and team setup assistance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon danger">🎓</div>
+                        <h4>Training Resources</h4>
+                        <p>Learning and skill development:</p>
+                        <ul>
+                            <li><strong>User Training:</strong> Platform usage sessions</li>
+                            <li><strong>Admin Training:</strong> System management courses</li>
+                            <li><strong>Best Practices:</strong> Workflow optimization</li>
+                            <li><strong>Video Tutorials:</strong> Step-by-step guides</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Troubleshooting Guide</h3>
+                <div class="card">
+                    <h4>Common Issues & Solutions</h4>
+                    
+                    <h4>Login Problems:</h4>
+                    <ul>
+                        <li><strong>Invalid Credentials:</strong> Verify username/password spelling and case</li>
+                        <li><strong>Page Won't Load:</strong> Check internet connection and try different browser</li>
+                        <li><strong>Session Expired:</strong> Log out completely and log back in</li>
+                    </ul>
+                    
+                    <h4>Dependency Issues:</h4>
+                    <ul>
+                        <li><strong>Can't Edit:</strong> Only creators and admins can edit dependencies</li>
+                        <li><strong>Save Fails:</strong> Check all required fields are completed</li>
+                        <li><strong>Missing Dependencies:</strong> Check active filters and clear if necessary</li>
+                    </ul>
+                    
+                    <h4>Email Problems:</h4>
+                    <ul>
+                        <li><strong>Not Receiving:</strong> Check spam folder and verify email address</li>
+                        <li><strong>Wrong Recipient:</strong> Contact admin to update team owner mappings</li>
+                        <li><strong>Delayed Emails:</strong> Corporate email servers may introduce delays</li>
+                    </ul>
+                </div>
+
+                <h3>System Information</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Version</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DepFlow Platform</td>
+                            <td>1.0.0</td>
+                            <td><span class="badge badge-success">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>API Version</td>
+                            <td>1.0</td>
+                            <td><span class="badge badge-success">Available</span></td>
+                        </tr>
+                        <tr>
+                            <td>Email Notifications</td>
+                            <td>Enabled</td>
+                            <td><span class="badge badge-success">Configured</span></td>
+                        </tr>
+                        <tr>
+                            <td>Database</td>
+                            <td>In-Memory</td>
+                            <td><span class="badge badge-info">Development</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Feedback & Improvement</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon success">💡</div>
+                        <div>
+                            <h4>Help Us Improve DepFlow</h4>
+                            <p>Your feedback drives platform enhancement</p>
+                        </div>
+                    </div>
+                    
+                    <h4>How to Provide Feedback:</h4>
+                    <ul>
+                        <li><strong>Feature Requests:</strong> Suggest new capabilities or improvements</li>
+                        <li><strong>Usability Feedback:</strong> Report interface or workflow issues</li>
+                        <li><strong>Bug Reports:</strong> Detail any problems or unexpected behavior</li>
+                        <li><strong>Training Needs:</strong> Request additional documentation or training</li>
+                    </ul>
+                    
+                    <p><strong>Contact Methods:</strong></p>
+                    <ul>
+                        <li>Submit feedback through your system administrator</li>
+                        <li>Participate in user surveys and feedback sessions</li>
+                        <li>Join user groups and improvement committees</li>
+                        <li>Document enhancement requests with business justification</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Emergency Contact</h4>
+                    <p>For urgent issues affecting multiple users or critical business operations:</p>
+                    <ul>
+                        <li><strong>System Down:</strong> Contact IT helpdesk immediately</li>
+                        <li><strong>Data Issues:</strong> Report to system administrator</li>
+                        <li><strong>Security Concerns:</strong> Follow your organization's security incident procedures</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2025 DepFlow - Enterprise Dependency Management Platform</p>
+                <p>Built with ❤️ for Enterprise Teams | Version 1.0.0 | Last Updated: September 2025</p>
+                <div style="margin-top: 1rem;">
+                    <span class="badge badge-success">SOC 2 Compliant</span>
+                    <span class="badge badge-info">SSL Secured</span>
+                    <span class="badge badge-warning">99.9% Uptime</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all nav links
+                    navLinks.forEach(nl => nl.classList.remove('active'));
+                    // Add active class to clicked link
+                    this.classList.add('active');
+                    
+                    // Hide all sections
+                    sections.forEach(section => section.classList.remove('active'));
+                    
+                    // Show target section
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                        // Smooth scroll to top of content
+                        document.querySelector('.content').scrollTop = 0;
+                    }
+                });
+            });
+
+            // Print functionality
+            const printBtn = document.createElement('button');
+            printBtn.innerHTML = '🖨️ Print Documentation';
+            printBtn.className = 'btn btn-primary';
+            printBtn.style.position = 'fixed';
+            printBtn.style.bottom = '20px';
+            printBtn.style.right = '20px';
+            printBtn.style.zIndex = '1000';
+            printBtn.addEventListener('click', function() {
+                window.print();
+            });
+            document.body.appendChild(printBtn);
+
+            // Search functionality within page
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.placeholder = 'Search documentation...';
+            searchInput.style.position = 'fixed';
+            searchInput.style.top = '20px';
+            searchInput.style.right = '20px';
+            searchInput.style.padding = '0.5rem';
+            searchInput.style.borderRadius = '6px';
+            searchInput.style.border = '1px solid #e2e8f0';
+            searchInput.style.zIndex = '1000';
+            searchInput.style.background = 'white';
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const content = document.querySelectorAll('.section h2, .section h3, .section h4, .section p, .section li');
+                
+                content.forEach(element => {
+                    const text = element.textContent.toLowerCase();
+                    if (searchTerm && text.includes(searchTerm)) {
+                        element.style.background = '#fff3cd';
+                        element.style.padding = '0.25rem';
+                        element.style.borderRadius = '3px';
+                    } else {
+                        element.style.background = '';
+                        element.style.padding = '';
+                        element.style.borderRadius = '';
+                    }
+                });
+            });
+            
+            document.body.appendChild(searchInput);
+        });
+    </script>
+</body>
+</html>

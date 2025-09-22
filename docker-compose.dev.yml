@@ -1,0 +1,117 @@
+version: '3.8'
+
+services:
+  # MongoDB Database (Development)
+  mongodb:
+    image: mongo:7.0
+    container_name: dep-mgmt-mongodb-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: dependency_management
+    volumes:
+      - mongodb_dev_data:/data/db
+    networks:
+      - dep-mgmt-dev-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache (Development)
+  redis:
+    image: redis:7-alpine
+    container_name: dep-mgmt-redis-dev
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_dev_data:/data
+    networks:
+      - dep-mgmt-dev-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API (Development with hot reload)
+  backend-dev:
+    build:
+      context: ./backend
+      dockerfile: ../deployment/docker/Dockerfile.backend
+      target: development
+    container_name: dep-mgmt-backend-dev
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+      - "9229:9229"  # Debug port
+    environment:
+      NODE_ENV: development
+      PORT: 5000
+      DATABASE_URL: mongodb://mongodb:27017/dependency_management
+      MONGODB_URI: mongodb://mongodb:27017/dependency_management
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: dev-jwt-secret-not-for-production
+      JWT_REFRESH_SECRET: dev-refresh-secret-not-for-production
+      JWT_EXPIRATION: 24h
+      JWT_REFRESH_EXPIRATION: 7d
+      CORS_ORIGIN: http://localhost:3000
+      LOG_LEVEL: debug
+      RATE_LIMIT_MAX_REQUESTS: 10000  # Higher for development
+      RATE_LIMIT_AUTH_MAX_REQUESTS: 100
+      BCRYPT_ROUNDS: 4  # Lower for faster development
+      DEV_SEED_DATABASE: true
+      DEV_MOCK_EXTERNAL_APIS: true
+      FEATURE_VULNERABILITY_SCANNING: true
+      FEATURE_EMAIL_NOTIFICATIONS: false
+      FEATURE_ADVANCED_ANALYTICS: true
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/logs:/app/logs
+      - /app/node_modules  # Anonymous volume for node_modules
+    networks:
+      - dep-mgmt-dev-network
+    command: npm run dev
+
+  # Frontend Development Server
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: ../deployment/docker/Dockerfile.frontend
+      target: development
+    container_name: dep-mgmt-frontend-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_API_URL: http://localhost:5000
+      VITE_SOCKET_URL: http://localhost:5000
+      VITE_ENABLE_DEV_TOOLS: true
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - /app/node_modules  # Anonymous volume for node_modules
+    networks:
+      - dep-mgmt-dev-network
+    command: npm run dev -- --host
+
+volumes:
+  mongodb_dev_data:
+    driver: local
+  redis_dev_data:
+    driver: local
+
+networks:
+  dep-mgmt-dev-network:
+    driver: bridge
+
+
