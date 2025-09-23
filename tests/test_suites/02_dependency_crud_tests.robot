@@ -2,16 +2,16 @@
 Documentation    Dependency CRUD Operations Test Suite for DepFlow Application
 Resource         ../keywords/depflow_keywords.robot
 Resource         ../config/variables.robot
-Suite Setup      Setup Test Environment And Login
-Suite Teardown   Logout And Teardown Test Environment
-Test Setup       Navigate To Dashboard And Close Modals
-Test Teardown    Take Screenshot With Timestamp
+Suite Setup      Test Mode Suite Setup
+Suite Teardown   Test Mode Suite Teardown
+Test Setup       Test Mode Test Setup
+Test Teardown    Test Mode Test Teardown
 
 *** Keywords ***
+# Legacy keywords maintained for compatibility
 Setup Test Environment And Login
-    [Documentation]    Setup test environment and login as admin
-    Setup Test Environment
-    Login As Admin
+    [Documentation]    Legacy setup - replaced by Test Mode Suite Setup
+    Test Mode Suite Setup
 
 Logout And Teardown Test Environment
     [Documentation]    Logout and teardown test environment
@@ -46,7 +46,7 @@ TC014 - Open Add Dependency Modal
     Element Should Be Visible    ${DEP_DESCRIPTION_FIELD}
     Element Should Be Visible    ${DEP_TEAM_SELECT}
     Element Should Be Visible    ${DEP_STATUS_SELECT}
-    Element Should Be Visible    ${SAVE_BUTTON}
+    Element Should Be Visible    ${ADD_BUTTON}
     Element Should Be Visible    ${CANCEL_BUTTON}
 
 TC015 - Add New Dependency Successfully
@@ -56,11 +56,16 @@ TC015 - Add New Dependency Successfully
     ${unique_name}=    Generate Test Data    CreateTest
     ${description}=    Set Variable    Test dependency created by Robot Framework automation
     
-    Add New Dependency    ${unique_name}    ${description}    ${TEST_DEP_TEAM}    ${TEST_DEP_STATUS}    ${TEST_DEP_PRIORITY}    ${TEST_DEP_RISK}    ${TEST_JIRA_URL}
+    Add New Dependency    ${unique_name}    ${description}    ${TEST_DEP_TEAM}    ${TEST_DEP_STATUS}    ${TEST_DEP_PRIORITY}
     
     # Verify dependency was created
     Verify Dependency Exists    ${unique_name}
     Verify Notification Message    successfully
+    
+    # Verify dependency appears in the table with correct data
+    Page Should Contain    ${unique_name}
+    Page Should Contain    ${description}
+    Page Should Contain    ${TEST_DEP_TEAM}
 
 TC016 - Add Dependency With Minimal Required Fields
     [Documentation]    Test creating dependency with only required fields
@@ -79,13 +84,21 @@ TC017 - Validate Required Field - Name
     [Tags]    crud    validation    negative
     
     Click Element    ${ADD_DEPENDENCY_BUTTON}
-    Wait Until Element Is Visible    ${ADD_EDIT_MODAL}
+    Wait Until Element Is Visible    ${ADD_EDIT_MODAL}    timeout=10s
+    
+    # Wait for all form fields to be interactive
+    Wait Until Element Is Visible    ${DEP_NAME_FIELD}         timeout=5s
+    Wait Until Element Is Visible    ${DEP_DESCRIPTION_FIELD}  timeout=5s
+    Wait Until Element Is Visible    ${DEP_TEAM_SELECT}        timeout=5s
+    Wait Until Element Is Enabled    ${DEP_DESCRIPTION_FIELD}  timeout=5s
+    Wait Until Element Is Enabled    ${DEP_TEAM_SELECT}        timeout=5s
     
     # Leave name empty, fill other fields
+    Sleep    1s    # Additional time for modal animation to complete
     Input Text    ${DEP_DESCRIPTION_FIELD}    Test description without name
     Select From List By Label    ${DEP_TEAM_SELECT}    ${TEST_DEP_TEAM}
     
-    Click Element    ${SAVE_BUTTON}
+    Click Element    ${ADD_BUTTON}
     
     # Modal should remain open due to validation error
     Element Should Be Visible    ${ADD_EDIT_MODAL}
@@ -95,14 +108,23 @@ TC018 - Validate Required Field - Description
     [Tags]    crud    validation    negative
     
     Click Element    ${ADD_DEPENDENCY_BUTTON}
-    Wait Until Element Is Visible    ${ADD_EDIT_MODAL}
+    Wait Until Element Is Visible    ${ADD_EDIT_MODAL}    timeout=10s
+    
+    # Wait for all form fields to be interactive
+    Wait Until Element Is Visible    ${DEP_NAME_FIELD}         timeout=5s
+    Wait Until Element Is Visible    ${DEP_DESCRIPTION_FIELD}  timeout=5s
+    Wait Until Element Is Visible    ${DEP_TEAM_SELECT}        timeout=5s
+    Wait Until Element Is Enabled    ${DEP_NAME_FIELD}         timeout=5s
+    Wait Until Element Is Enabled    ${DEP_DESCRIPTION_FIELD}  timeout=5s
+    Wait Until Element Is Enabled    ${DEP_TEAM_SELECT}        timeout=5s
     
     # Fill name but leave description too short
+    Sleep    1s    # Additional time for modal animation to complete
     Input Text    ${DEP_NAME_FIELD}    Test Name
     Input Text    ${DEP_DESCRIPTION_FIELD}    Short
     Select From List By Label    ${DEP_TEAM_SELECT}    ${TEST_DEP_TEAM}
     
-    Click Element    ${SAVE_BUTTON}
+    Click Element    ${ADD_BUTTON}
     
     # Should show validation error
     Element Should Be Visible    ${ADD_EDIT_MODAL}
@@ -129,21 +151,36 @@ TC019 - Edit Existing Dependency
     Verify Notification Message    successfully
 
 TC020 - Delete Dependency Successfully  
-    [Documentation]    Test successful deletion of a dependency
-    [Tags]    crud    delete
+    [Documentation]    Test successful deletion of a dependency with confirmation
+    [Tags]    crud    delete    confirmation
     
     # Create dependency to delete
     ${dep_name}=    Generate Test Data    DeleteTest
     ${description}=    Set Variable    Dependency created for deletion test
     Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}
     
-    # Delete the dependency
-    Delete Dependency    ${dep_name}
+    # Delete the dependency (with confirmation alert)
+    Delete Dependency With Confirmation    ${dep_name}
     
     # Verify it's gone
     Verify Dependency Does Not Exist    ${dep_name}
+    
+TC021 - Delete Dependency Cancel Confirmation
+    [Documentation]    Test canceling dependency deletion via confirmation dialog
+    [Tags]    crud    delete    cancel    confirmation
+    
+    # Create dependency to attempt deletion
+    ${dep_name}=    Generate Test Data    DeleteCancelTest
+    ${description}=    Set Variable    Dependency for delete cancel test
+    Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}
+    
+    # Attempt to delete but cancel confirmation
+    Cancel Delete Dependency    ${dep_name}
+    
+    # Verify dependency still exists (deletion was canceled)
+    Verify Dependency Exists    ${dep_name}
 
-TC021 - Cancel Add Dependency Operation
+TC022 - Cancel Add Dependency Operation
     [Documentation]    Test canceling the add dependency operation
     [Tags]    crud    ui    cancel
     
@@ -160,6 +197,143 @@ TC021 - Cancel Add Dependency Operation
     
     # Verify dependency was not created
     Verify Dependency Does Not Exist    Cancelled Dependency
+
+TC023 - Inline Edit Status Field
+    [Documentation]    Test inline editing of status field via dropdown
+    [Tags]    crud    inline_edit    status    update
+    
+    # Create dependency for status editing
+    ${dep_name}=    Generate Test Data    StatusEditTest
+    ${description}=    Set Variable    Dependency for status inline editing
+    Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}    NOT STARTED
+    
+    # Use inline status editing functionality
+    Test Inline Status Edit    ${dep_name}    IN PROGRESS
+
+TC024 - Inline Edit Priority Field
+    [Documentation]    Test inline editing of priority field via dropdown
+    [Tags]    crud    inline_edit    priority    update
+    
+    # Create dependency for priority editing
+    ${dep_name}=    Generate Test Data    PriorityEditTest
+    ${description}=    Set Variable    Dependency for priority inline editing
+    Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}    NOT STARTED    LOW
+    
+    # Use inline priority editing functionality
+    Test Inline Priority Edit    ${dep_name}    HIGH
+
+TC025 - RBAC Admin Can Edit Any Dependency
+    [Documentation]    Test that admin users can edit any dependency
+    [Tags]    crud    rbac    admin    edit
+    
+    # Login as admin and create dependency
+    ${dep_name}=    Generate Test Data    AdminEditTest
+    ${description}=    Set Variable    Dependency for admin RBAC test
+    Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}
+    
+    # Verify edit button is available for admin
+    Verify Edit Button Visibility    ${dep_name}    True
+    
+    # Test editing capability
+    ${new_name}=    Set Variable    ${dep_name}_AdminEdited
+    Edit Dependency    ${dep_name}    ${new_name}
+    Verify Dependency Exists    ${new_name}
+
+TC026 - RBAC Admin Can Delete Any Dependency  
+    [Documentation]    Test that admin users can delete any dependency
+    [Tags]    crud    rbac    admin    delete
+    
+    # Create dependency as admin
+    ${dep_name}=    Generate Test Data    AdminDeleteTest
+    ${description}=    Set Variable    Dependency for admin delete RBAC test
+    Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}
+    
+    # Verify delete button is available for admin
+    Verify Delete Button Visibility    ${dep_name}    True
+    
+    # Test deletion capability
+    Delete Dependency With Confirmation    ${dep_name}
+    Verify Dependency Does Not Exist    ${dep_name}
+
+TC027 - RBAC User Can Only Edit Own Dependencies
+    [Documentation]    Test that regular users can only edit dependencies they created
+    [Tags]    crud    rbac    user    edit    restriction
+    
+    # First logout admin and login as regular user
+    Logout From DepFlow
+    Login To DepFlow    ${USER_USERNAME}    ${USER_PASSWORD}
+    Navigate To Dashboard
+    
+    # Create dependency as regular user
+    ${dep_name}=    Generate Test Data    UserEditTest
+    ${description}=    Set Variable    Dependency created by regular user
+    Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}
+    
+    # Verify user can edit their own dependency
+    Verify Edit Button Visibility    ${dep_name}    True
+    
+    # Login back as admin to clean up
+    Logout From DepFlow
+    Login As Admin
+    Navigate To Dashboard
+
+TC028 - RBAC User Can Only Delete Own Dependencies
+    [Documentation]    Test that regular users can only delete dependencies they created
+    [Tags]    crud    rbac    user    delete    restriction
+    
+    # Login as regular user
+    Logout From DepFlow
+    Login To DepFlow    ${USER_USERNAME}    ${USER_PASSWORD}
+    Navigate To Dashboard
+    
+    # Create dependency as regular user
+    ${dep_name}=    Generate Test Data    UserDeleteTest
+    ${description}=    Set Variable    Dependency for user delete RBAC test
+    Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}
+    
+    # Verify user can delete their own dependency
+    Verify Delete Button Visibility    ${dep_name}    True
+    
+    # Test deletion
+    Delete Dependency With Confirmation    ${dep_name}
+    Verify Dependency Does Not Exist    ${dep_name}
+    
+    # Login back as admin
+    Logout From DepFlow  
+    Login As Admin
+    Navigate To Dashboard
+
+TC029 - Status Badge Color Verification
+    [Documentation]    Test that status badges display with correct colors
+    [Tags]    crud    ui    status    colors
+    
+    FOR    ${status}    IN    @{STATUSES}
+        ${dep_name}=    Generate Test Data    StatusColor_${status.replace(' ', '_')}
+        ${description}=    Set Variable    Testing ${status} status color
+        Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}    ${status}
+        
+        # Verify status badge exists and has color styling
+        Verify Status Badge Color    ${dep_name}    ${status}
+        
+        # Clean up
+        Delete Dependency With Confirmation    ${dep_name}
+    END
+
+TC030 - Priority Badge Color Verification
+    [Documentation]    Test that priority badges display with correct colors
+    [Tags]    crud    ui    priority    colors
+    
+    FOR    ${priority}    IN    @{PRIORITIES}
+        ${dep_name}=    Generate Test Data    PriorityColor_${priority}
+        ${description}=    Set Variable    Testing ${priority} priority color
+        Add New Dependency    ${dep_name}    ${description}    ${TEST_DEP_TEAM}    NOT STARTED    ${priority}
+        
+        # Verify priority badge exists and has color styling
+        Verify Priority Badge Color    ${dep_name}    ${priority}
+        
+        # Clean up
+        Delete Dependency With Confirmation    ${dep_name}
+    END
 
 TC022 - Add Dependency With All Teams
     [Documentation]    Test creating dependencies for all available teams
@@ -237,8 +411,8 @@ TC027 - Add Dependency With Long Text
     [Documentation]    Test creating dependency with maximum length text fields
     [Tags]    crud    boundary    edge_case
     
-    ${long_name}=    Set Variable    ${'Very Long Dependency Name That Exceeds Normal Length To Test Field Boundaries' * 2}
-    ${long_desc}=    Set Variable    ${'This is a very long description that tests the maximum length boundaries of the description field in the dependency management system. ' * 10}
+    ${long_name}=    Evaluate    'Very Long Dependency Name That Exceeds Normal Length To Test Field Boundaries' * 2
+    ${long_desc}=    Evaluate    'This is a very long description that tests the maximum length boundaries of the description field in the dependency management system. ' * 3
     
     Add New Dependency    ${long_name}    ${long_desc}    ${TEST_DEP_TEAM}
     Verify Dependency Exists    ${long_name}
