@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DepFlow - User Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 16px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .toc {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+
+        .toc h2 {
+            color: #667eea;
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 1.5rem 2rem 1rem;
+            margin: 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .tab-container {
+            display: flex;
+            flex-wrap: wrap;
+            background: #f8fafc;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem 1.5rem;
+            border: none;
+            background: transparent;
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tab-button span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .tab-button:hover {
+            color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .tab-button.active {
+            color: white;
+            border-bottom-color: #667eea;
+        }
+
+        .tab-button.active::before {
+            opacity: 1;
+        }
+
+        .tab-content {
+            padding: 0;
+        }
+
+        .tab-panel {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #f0f4f8;
+        }
+
+        .section h3 {
+            color: #4a5568;
+            font-size: 1.3rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+            font-size: 1.05rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .feature-card h4 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .step-box h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #ebf8ff;
+            border-color: #3182ce;
+            color: #2c5282;
+        }
+
+        .alert-warning {
+            background: #fffbeb;
+            border-color: #ed8936;
+            color: #c05621;
+        }
+
+        .alert-success {
+            background: #f0fff4;
+            border-color: #38a169;
+            color: #2f855a;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .screenshot {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin: 1.5rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .tab-button {
+                min-width: 120px;
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+            }
+            
+            .tab-button span {
+                font-size: 0.8rem;
+            }
+            
+            .tab-panel {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔗 DepFlow</h1>
+            <p>Complete User Guide for Dependency Management Platform</p>
+        </div>
+
+        <div class="toc">
+            <h2>📋 Navigation</h2>
+            <div class="tab-container">
+                <button class="tab-button active" onclick="showTab(event, 'getting-started')">
+                    <span>🚀 Getting Started</span>
+                </button>
+                <button class="tab-button" onclick="showTab(event, 'registration')">
+                    <span>📝 Registration</span>
+                </button>
+                <button class="tab-button" onclick="showTab(event, 'dashboard')">
+                    <span>📊 Dashboard</span>
+                </button>
+                <button class="tab-button" onclick="showTab(event, 'managing-dependencies')">
+                    <span>🔧 Dependencies</span>
+                </button>
+                <button class="tab-button" onclick="showTab(event, 'filtering-search')">
+                    <span>🔍 Search</span>
+                </button>
+                <button class="tab-button" onclick="showTab(event, 'rbac')">
+                    <span>🔐 Permissions</span>
+                </button>
+                <button class="tab-button" onclick="showTab(event, 'notifications')">
+                    <span>📧 Notifications</span>
+                </button>
+                <button class="tab-button" onclick="showTab(event, 'data-export')">
+                    <span>📤 Export</span>
+                </button>
+                <button class="tab-button" onclick="showTab(event, 'troubleshooting')">
+                    <span>🔧 Support</span>
+                </button>
+            </div>
+            <div class="tab-content">
+                <div class="tab-panel active" id="getting-started">
+            <h2>🚀 Getting Started</h2>
+            <p>Welcome to DepFlow, your comprehensive dependency management platform designed for modern development teams. This guide will help you get started with managing your project dependencies efficiently.</p>
+            
+            <h3>What is DepFlow?</h3>
+            <p>DepFlow is an enterprise-grade dependency management platform that helps development teams:</p>
+            <ul>
+                <li>Track and manage project dependencies</li>
+                <li>Monitor dependency status and priority</li>
+                <li>Collaborate effectively across teams</li>
+                <li>Receive automated notifications</li>
+                <li>Export and analyze dependency data</li>
+            </ul>
+
+            <div class="alert alert-info">
+                <strong>💡 Quick Tip:</strong> DepFlow works best when all team members are actively using the platform to update dependency statuses and collaborate on project planning.
+            </div>
+        </div>
+
+                </div>
+                <div class="tab-panel" id="registration">
+            <h2>📝 User Registration</h2>
+            
+            <h3>Creating Your Account</h3>
+            <div class="step-box">
+                <h4>Step 1: Registration</h4>
+                <ol>
+                    <li>Visit the DepFlow landing page</li>
+                    <li>Click the "Create Account" button</li>
+                    <li>Fill in your details:
+                        <ul>
+                            <li>First Name</li>
+                            <li>Last Name</li>
+                            <li>Email Address</li>
+                            <li>Password (minimum 6 characters)</li>
+                        </ul>
+                    </li>
+                    <li>Confirm your password</li>
+                    <li>Click "Create Account"</li>
+                </ol>
+            </div>
+
+            <h3>Logging In</h3>
+            <div class="step-box">
+                <h4>Step 2: First Login</h4>
+                <p>After registration, you'll be automatically logged in and redirected to the dashboard. For future sessions:</p>
+                <ol>
+                    <li>Click "Login to Dashboard"</li>
+                    <li>Enter your email and password</li>
+                    <li>Click "Login"</li>
+                </ol>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>Demo Accounts:</strong> For testing purposes, you can use the quick login buttons with pre-configured admin and user accounts.
+            </div>
+        </div>
+
+                </div>
+                <div class="tab-panel" id="dashboard">
+            <h2>📊 Dashboard Overview</h2>
+            
+            <h3>Dashboard Components</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📈 Statistics Panel</h4>
+                    <p>View real-time counts of your dependencies by status: Total, Not Started, In Progress, Blocked, and Completed.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔍 Search & Filter</h4>
+                    <p>Powerful search functionality to find dependencies by name, team, or status. Use filters to narrow down your view.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📋 Dependencies Table</h4>
+                    <p>Comprehensive view of all dependencies with sortable columns and inline editing capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>⚡ Quick Actions</h4>
+                    <p>Add new dependencies, edit existing ones, and delete dependencies with confirmation dialogs.</p>
+                </div>
+            </div>
+
+            <h3>Navigation</h3>
+            <p>The dashboard header contains:</p>
+            <ul>
+                <li><strong>DepFlow Logo:</strong> Returns you to the main dashboard</li>
+                <li><strong>User Panel:</strong> Shows your welcome message and logout button</li>
+                <li><strong>Download Options:</strong> Export your data to CSV or Excel format</li>
+            </ul>
+        </div>
+
+                </div>
+                <div class="tab-panel" id="managing-dependencies">
+            <h2>🔧 Managing Dependencies</h2>
+
+            <h3>Adding New Dependencies</h3>
+            <div class="step-box">
+                <h4>Create a New Dependency</h4>
+                <ol>
+                    <li>Click the "Add Dependency" button</li>
+                    <li>Fill in the required information:
+                        <ul>
+                            <li><strong>Name:</strong> Dependency identifier (required)</li>
+                            <li><strong>Description:</strong> Detailed explanation (minimum 10 characters)</li>
+                            <li><strong>Team:</strong> Select responsible team</li>
+                            <li><strong>Status:</strong> Choose from Not Started, In Progress, Blocked, Completed</li>
+                            <li><strong>Priority:</strong> Set as High, Medium, or Low</li>
+                        </ul>
+                    </li>
+                    <li>Click "Add Dependency" to save</li>
+                </ol>
+            </div>
+
+            <h3>Editing Dependencies</h3>
+            <p>You can edit dependencies in two ways:</p>
+
+            <h4>Inline Editing</h4>
+            <ul>
+                <li><strong>Status:</strong> Click the status dropdown to quickly change status</li>
+                <li><strong>Priority:</strong> Click the priority dropdown for immediate updates</li>
+            </ul>
+
+            <h4>Full Edit Mode</h4>
+            <ol>
+                <li>Click the edit button (✏️) next to any dependency</li>
+                <li>Modify any fields in the edit modal</li>
+                <li>Click "Save Changes"</li>
+            </ol>
+
+            <h3>Deleting Dependencies</h3>
+            <div class="alert alert-warning">
+                <strong>⚠️ Important:</strong> Deleting dependencies is permanent and cannot be undone.
+            </div>
+            <ol>
+                <li>Click the delete button (🗑️) next to the dependency</li>
+                <li>Confirm the deletion in the popup dialog</li>
+            </ol>
+
+            <h3>Visual Indicators</h3>
+            <p>Dependencies include visual status and priority indicators:</p>
+            <ul>
+                <li><strong>Status:</strong> Colored squares indicating current status</li>
+                <li><strong>Priority:</strong> Colored circles showing priority level</li>
+            </ul>
+        </div>
+
+                </div>
+                <div class="tab-panel" id="filtering-search">
+            <h2>🔍 Filtering & Search</h2>
+
+            <h3>Search Functionality</h3>
+            <p>The search box allows you to find dependencies by:</p>
+            <ul>
+                <li>Dependency name</li>
+                <li>Description text</li>
+                <li>Team name</li>
+            </ul>
+
+            <h3>Filter Options</h3>
+            
+            <h4>Counter-Based Filtering</h4>
+            <p>Click on any counter in the statistics panel to filter by status:</p>
+            <ul>
+                <li><strong>Total Dependencies:</strong> Shows all dependencies</li>
+                <li><strong>Status Counters:</strong> Filter by specific status (Not Started, In Progress, Blocked, Completed)</li>
+            </ul>
+
+            <h4>Dropdown Filters</h4>
+            <ul>
+                <li><strong>Team Filter:</strong> Select specific teams</li>
+                <li><strong>Status Filter:</strong> Choose status types</li>
+                <li><strong>Priority Filter:</strong> Filter by priority level</li>
+            </ul>
+
+            <h3>Sorting</h3>
+            <p>Click on column headers to sort by:</p>
+            <ul>
+                <li>Name (alphabetical)</li>
+                <li>Team (alphabetical)</li>
+                <li>Status (custom order)</li>
+                <li>Priority (High → Medium → Low)</li>
+                <li>Created By (alphabetical)</li>
+                <li>Date (chronological)</li>
+            </ul>
+
+            <div class="alert alert-success">
+                <strong>✨ Pro Tip:</strong> Combine search, filters, and sorting for powerful data exploration and management.
+            </div>
+        </div>
+
+                </div>
+                <div class="tab-panel" id="rbac">
+            <h2>🔐 Permissions & Access Control</h2>
+
+            <h3>User Roles</h3>
+            <p>DepFlow implements Role-Based Access Control (RBAC) with two main roles:</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>👑 Admin Users</h4>
+                    <ul>
+                        <li>View all dependencies</li>
+                        <li>Edit any dependency</li>
+                        <li>Delete any dependency</li>
+                        <li>Access all system features</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>👤 Regular Users</h4>
+                    <ul>
+                        <li>View all dependencies</li>
+                        <li>Create new dependencies</li>
+                        <li>Edit own dependencies only</li>
+                        <li>Delete own dependencies only</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Ownership Rules</h3>
+            <ul>
+                <li>Dependencies are owned by their creator</li>
+                <li>Regular users can only modify dependencies they created</li>
+                <li>Admin users have full access to all dependencies</li>
+                <li>All users can view and filter all dependencies</li>
+            </ul>
+
+            <div class="alert alert-info">
+                <strong>💡 Note:</strong> The interface remains consistent for all users - permissions are enforced at the action level.
+            </div>
+        </div>
+
+                </div>
+                <div class="tab-panel" id="notifications">
+            <h2>📧 Email Notifications</h2>
+
+            <h3>Automatic Notifications</h3>
+            <p>DepFlow sends email notifications for the following events:</p>
+            <ul>
+                <li>New dependency created</li>
+                <li>Dependency status updated</li>
+                <li>Dependency priority changed</li>
+                <li>Dependency edited</li>
+            </ul>
+
+            <h3>Notification Content</h3>
+            <p>Each email includes:</p>
+            <ul>
+                <li>Dependency name and description</li>
+                <li>Current status and priority with color coding</li>
+                <li>Team information</li>
+                <li>Action performed and by whom</li>
+                <li>Date and time of the change</li>
+            </ul>
+
+            <div class="alert alert-info">
+                <strong>📬 Email Configuration:</strong> Notifications are sent automatically to the configured administrative email address for all dependency changes.
+            </div>
+        </div>
+
+                </div>
+                <div class="tab-panel" id="data-export">
+            <h2>📤 Data Export</h2>
+
+            <h3>Export Options</h3>
+            <p>DepFlow supports exporting your dependency data in two formats:</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📊 CSV Export</h4>
+                    <p>Export to CSV format for spreadsheet analysis, data processing, and integration with other tools.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📈 Excel Export</h4>
+                    <p>Export to Excel format (.xlsx) with proper formatting and data types for advanced analysis.</p>
+                </div>
+            </div>
+
+            <h3>How to Export</h3>
+            <div class="step-box">
+                <h4>Export Your Data</h4>
+                <ol>
+                    <li>Apply any filters or search criteria (optional)</li>
+                    <li>Click the "Download" button in the header</li>
+                    <li>Choose "Export to CSV" or "Export to Excel"</li>
+                    <li>The file will download automatically</li>
+                </ol>
+            </div>
+
+            <h3>Export Data Includes</h3>
+            <ul>
+                <li>Dependency name and description</li>
+                <li>Team assignment</li>
+                <li>Status and priority</li>
+                <li>Creator information</li>
+                <li>Creation date and time</li>
+            </ul>
+
+            <div class="alert alert-success">
+                <strong>💡 Tip:</strong> Export filtered data to create focused reports for specific teams or project phases.
+            </div>
+        </div>
+
+                </div>
+                <div class="tab-panel" id="troubleshooting">
+            <h2>🔧 Troubleshooting</h2>
+
+            <h3>Common Issues</h3>
+
+            <h4>Login Problems</h4>
+            <ul>
+                <li>Ensure your email and password are correct</li>
+                <li>Check if Caps Lock is enabled</li>
+                <li>Try refreshing the page and logging in again</li>
+            </ul>
+
+            <h4>Can't Edit Dependencies</h4>
+            <ul>
+                <li>Regular users can only edit dependencies they created</li>
+                <li>Check if you're the original creator of the dependency</li>
+                <li>Contact an administrator if you need to edit someone else's dependency</li>
+            </ul>
+
+            <h4>Missing Dependencies</h4>
+            <ul>
+                <li>Check your applied filters and search terms</li>
+                <li>Click "Clear Filters" to see all dependencies</li>
+                <li>Ensure you're not filtering by a specific team or status</li>
+            </ul>
+
+            <h4>Email Notifications Not Received</h4>
+            <ul>
+                <li>Check your spam/junk email folder</li>
+                <li>Verify your email address in your profile</li>
+                <li>Contact your administrator to check email configuration</li>
+            </ul>
+
+            <h3>Browser Compatibility</h3>
+            <p>DepFlow works best with modern browsers:</p>
+            <ul>
+                <li>Chrome 70+</li>
+                <li>Firefox 65+</li>
+                <li>Safari 12+</li>
+                <li>Edge 79+</li>
+            </ul>
+
+            <h3>Getting Help</h3>
+            <div class="alert alert-info">
+                <strong>🆘 Need Additional Support?</strong> Contact your system administrator or development team for further assistance with DepFlow configuration and advanced features.
+            </div>
+
+            <p style="text-align: center; margin-top: 3rem;">
+                <a href="#" onclick="window.close();" class="btn">Close Documentation</a>
+            </p>
+        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(evt, tabName) {
+            // Hide all tab panels
+            var tabPanels = document.getElementsByClassName('tab-panel');
+            for (var i = 0; i < tabPanels.length; i++) {
+                tabPanels[i].classList.remove('active');
+            }
+            
+            // Remove active class from all tab buttons
+            var tabButtons = document.getElementsByClassName('tab-button');
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+            
+            // Show the selected tab panel and mark button as active
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+
+        // Initialize the first tab as active on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            var firstTab = document.querySelector('.tab-button');
+            var firstPanel = document.querySelector('.tab-panel');
+            if (firstTab && firstPanel) {
+                firstTab.classList.add('active');
+                firstPanel.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

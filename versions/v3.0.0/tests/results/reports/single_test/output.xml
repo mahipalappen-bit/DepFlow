@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.9.6 on darwin)" generated="20250923 08:16:58.480" rpa="false" schemaversion="4">
+<suite id="s1" name="02 Dependency Crud Tests" source="/Users/mmoola/Cursor/Dependency Management App/tests/test_suites/02_dependency_crud_tests.robot">
+<kw name="Test Mode Suite Setup" library="depflow_keywords" type="SETUP">
+<doc>Setup using test mode authentication</doc>
+<kw name="Open DepFlow Application" library="depflow_keywords">
+<doc>Opens the DepFlow application in browser</doc>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${APP_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250923 08:16:58.671" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20250923 08:16:58.671" endtime="20250923 08:17:01.363"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20250923 08:17:01.367" endtime="20250923 08:17:01.746"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>${IMPLICIT_WAIT}</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20250923 08:17:01.746" endtime="20250923 08:17:01.749"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 08:17:01.749" endtime="20250923 08:17:01.788"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:04.791" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20250923 08:17:01.788" endtime="20250923 08:17:04.791"/>
+</kw>
+<status status="PASS" starttime="20250923 08:16:58.671" endtime="20250923 08:17:04.791"/>
+</kw>
+<kw name="Test Mode Admin Login" library="depflow_keywords">
+<doc>Quick admin login using test mode</doc>
+<kw name="Test Mode Login" library="depflow_keywords">
+<arg>admin</arg>
+<doc>Login using test mode bypass - no modal interaction required</doc>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 08:17:04.792" endtime="20250923 08:17:04.801"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:05.804" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 08:17:04.801" endtime="20250923 08:17:05.804"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeLogin === 'function') {</arg>
+<arg>window.DepFlow.testModeLogin('${user_type}');</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode login function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 08:17:05.808" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeLogin === 'function') {window.DepFlow.testModeLogin('admin');} else {console.error('Test mode login function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 08:17:05.805" endtime="20250923 08:17:05.825"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:07.826" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250923 08:17:05.825" endtime="20250923 08:17:07.827"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 08:17:07.827" endtime="20250923 08:17:07.852"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 08:17:07.852" endtime="20250923 08:17:07.864"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Login Completed for ${user_type}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 08:17:07.864" level="INFO">Test Mode Login Completed for admin</msg>
+<status status="PASS" starttime="20250923 08:17:07.864" endtime="20250923 08:17:07.864"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:04.792" endtime="20250923 08:17:07.864"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:04.792" endtime="20250923 08:17:07.864"/>
+</kw>
+<status status="PASS" starttime="20250923 08:16:58.671" endtime="20250923 08:17:07.864"/>
+</kw>
+<test id="s1-t1" name="TC014 - Open Add Dependency Modal" line="37">
+<kw name="Test Mode Test Setup" library="depflow_keywords" type="SETUP">
+<doc>Individual test setup using test mode</doc>
+<kw name="Test Mode Reset" library="depflow_keywords">
+<doc>Complete app state reset for clean test environment</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeReset === 'function') {</arg>
+<arg>window.DepFlow.testModeReset();</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode reset function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 08:17:07.865" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeReset === 'function') {window.DepFlow.testModeReset();} else {console.error('Test mode reset function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 08:17:07.865" endtime="20250923 08:17:07.869"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:08.871" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 08:17:07.870" endtime="20250923 08:17:08.871"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Reset Completed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 08:17:08.872" level="INFO">Test Mode Reset Completed</msg>
+<status status="PASS" starttime="20250923 08:17:08.871" endtime="20250923 08:17:08.872"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:07.865" endtime="20250923 08:17:08.872"/>
+</kw>
+<kw name="Test Mode Admin Login" library="depflow_keywords">
+<doc>Quick admin login using test mode</doc>
+<kw name="Test Mode Login" library="depflow_keywords">
+<arg>admin</arg>
+<doc>Login using test mode bypass - no modal interaction required</doc>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 08:17:08.873" endtime="20250923 08:17:08.883"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:09.884" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 08:17:08.883" endtime="20250923 08:17:09.884"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeLogin === 'function') {</arg>
+<arg>window.DepFlow.testModeLogin('${user_type}');</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode login function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 08:17:09.885" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeLogin === 'function') {window.DepFlow.testModeLogin('admin');} else {console.error('Test mode login function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 08:17:09.884" endtime="20250923 08:17:09.896"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:11.899" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250923 08:17:09.896" endtime="20250923 08:17:11.899"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 08:17:11.899" endtime="20250923 08:17:11.910"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 08:17:11.910" endtime="20250923 08:17:11.917"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Login Completed for ${user_type}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 08:17:11.918" level="INFO">Test Mode Login Completed for admin</msg>
+<status status="PASS" starttime="20250923 08:17:11.918" endtime="20250923 08:17:11.918"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:08.872" endtime="20250923 08:17:11.918"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:08.872" endtime="20250923 08:17:11.918"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:07.865" endtime="20250923 08:17:11.918"/>
+</kw>
+<kw name="Ensure All Modals Closed" library="depflow_keywords">
+<doc>Ensures all modals are closed before proceeding</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof closeLoginModal === 'function') { closeLoginModal(); }</arg>
+<arg>if (typeof closeAddDependencyModal === 'function') { closeAddDependencyModal(); }</arg>
+<arg>if (typeof closeEditDependencyModal === 'function') { closeEditDependencyModal(); }</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 08:17:11.919" level="INFO">Executing JavaScript:
+if (typeof closeLoginModal === 'function') { closeLoginModal(); }if (typeof closeAddDependencyModal === 'function') { closeAddDependencyModal(); }if (typeof closeEditDependencyModal === 'function') { closeEditDependencyModal(); }
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 08:17:11.918" endtime="20250923 08:17:11.921"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>document.querySelectorAll('.modal').forEach(modal =&gt; {</arg>
+<arg>modal.style.display = 'none';</arg>
+<arg>modal.classList.remove('show');</arg>
+<arg>});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 08:17:11.921" level="INFO">Executing JavaScript:
+document.querySelectorAll('.modal').forEach(modal =&gt; {modal.style.display = 'none';modal.classList.remove('show');});
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 08:17:11.921" endtime="20250923 08:17:11.923"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Press Keys</arg>
+<arg>None</arg>
+<arg>ESCAPE</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>None</arg>
+<arg>ESCAPE</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20250923 08:17:11.924" level="INFO">Sending key(s) ('ESCAPE',) to page.</msg>
+<msg timestamp="20250923 08:17:11.924" level="INFO">Pressing special key ESCAPE to browser.</msg>
+<msg timestamp="20250923 08:17:11.924" level="INFO">Releasing special key ESCAPE.</msg>
+<status status="PASS" starttime="20250923 08:17:11.924" endtime="20250923 08:17:11.930"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:11.923" endtime="20250923 08:17:11.930"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:12.931" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 08:17:11.930" endtime="20250923 08:17:12.931"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:11.918" endtime="20250923 08:17:12.932"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:13.934" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 08:17:12.932" endtime="20250923 08:17:13.934"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${ADD_DEPENDENCY_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20250923 08:17:13.935" level="INFO">Clicking element 'xpath://button[contains(@onclick, 'showAddDependencyModal')]'.</msg>
+<status status="PASS" starttime="20250923 08:17:13.934" endtime="20250923 08:17:13.990"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${ADD_EDIT_MODAL}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 08:17:13.990" endtime="20250923 08:17:14.013"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DEP_NAME_FIELD}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 08:17:14.029" level="INFO">Element 'id:addName' is displayed.</msg>
+<status status="PASS" starttime="20250923 08:17:14.013" endtime="20250923 08:17:14.030"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DEP_DESCRIPTION_FIELD}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 08:17:14.042" level="INFO">Element 'id:addDescription' is displayed.</msg>
+<status status="PASS" starttime="20250923 08:17:14.030" endtime="20250923 08:17:14.042"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DEP_TEAM_SELECT}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 08:17:14.055" level="INFO">Element 'id:addTeam' is displayed.</msg>
+<status status="PASS" starttime="20250923 08:17:14.042" endtime="20250923 08:17:14.055"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DEP_STATUS_SELECT}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 08:17:14.067" level="INFO">Element 'id:addStatus' is displayed.</msg>
+<status status="PASS" starttime="20250923 08:17:14.055" endtime="20250923 08:17:14.067"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${SAVE_BUTTON}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 08:17:14.264" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20250923 08:17:14.264" level="FAIL">The element 'xpath://button[contains(@class, 'btn-submit')]' should be visible, but it is not.</msg>
+<status status="FAIL" starttime="20250923 08:17:14.067" endtime="20250923 08:17:14.269"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${CANCEL_BUTTON}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="NOT RUN" starttime="20250923 08:17:14.270" endtime="20250923 08:17:14.270"/>
+</kw>
+<kw name="Test Mode Test Teardown" library="depflow_keywords" type="TEARDOWN">
+<doc>Individual test teardown using test mode</doc>
+<kw name="Test Mode Reset" library="depflow_keywords">
+<doc>Complete app state reset for clean test environment</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeReset === 'function') {</arg>
+<arg>window.DepFlow.testModeReset();</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode reset function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 08:17:14.270" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeReset === 'function') {window.DepFlow.testModeReset();} else {console.error('Test mode reset function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 08:17:14.270" endtime="20250923 08:17:14.274"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:15.276" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 08:17:14.274" endtime="20250923 08:17:15.276"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Reset Completed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 08:17:15.276" level="INFO">Test Mode Reset Completed</msg>
+<status status="PASS" starttime="20250923 08:17:15.276" endtime="20250923 08:17:15.276"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:14.270" endtime="20250923 08:17:15.276"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:14.270" endtime="20250923 08:17:15.276"/>
+</kw>
+<doc>Test opening the Add Dependency modal</doc>
+<tag>modal</tag>
+<tag>smoke</tag>
+<tag>ui</tag>
+<status status="FAIL" starttime="20250923 08:17:07.864" endtime="20250923 08:17:15.276">The element 'xpath://button[contains(@class, 'btn-submit')]' should be visible, but it is not.</status>
+</test>
+<kw name="Test Mode Suite Teardown" library="depflow_keywords" type="TEARDOWN">
+<doc>Teardown using test mode</doc>
+<kw name="Test Mode Reset" library="depflow_keywords">
+<doc>Complete app state reset for clean test environment</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeReset === 'function') {</arg>
+<arg>window.DepFlow.testModeReset();</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode reset function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 08:17:15.278" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeReset === 'function') {window.DepFlow.testModeReset();} else {console.error('Test mode reset function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 08:17:15.277" endtime="20250923 08:17:15.283"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 08:17:16.285" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 08:17:15.283" endtime="20250923 08:17:16.285"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Reset Completed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 08:17:16.285" level="INFO">Test Mode Reset Completed</msg>
+<status status="PASS" starttime="20250923 08:17:16.285" endtime="20250923 08:17:16.285"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:15.277" endtime="20250923 08:17:16.285"/>
+</kw>
+<kw name="Close DepFlow Application" library="depflow_keywords">
+<doc>Closes the browser and cleans up</doc>
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20250923 08:17:16.285" endtime="20250923 08:17:16.453"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:16.285" endtime="20250923 08:17:16.453"/>
+</kw>
+<status status="PASS" starttime="20250923 08:17:15.277" endtime="20250923 08:17:16.453"/>
+</kw>
+<doc>Dependency CRUD Operations Test Suite for DepFlow Application</doc>
+<status status="FAIL" starttime="20250923 08:16:58.481" endtime="20250923 08:17:16.453"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">modal</stat>
+<stat pass="0" fail="1" skip="0">smoke</stat>
+<stat pass="0" fail="1" skip="0">ui</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="02 Dependency Crud Tests">02 Dependency Crud Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
