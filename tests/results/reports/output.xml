@@ -1,1087 +1,774 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.9.6 on darwin)" generated="20250922 15:22:55.515" rpa="false" schemaversion="4">
-<suite id="s1" name="03 Filtering Search Tests" source="/Users/mmoola/Cursor/Dependency Management App/tests/test_suites/03_filtering_search_tests.robot">
-<kw name="Setup Test Environment And Create Test Data" type="SETUP">
-<doc>Setup environment, login, and create test dependencies</doc>
-<kw name="Setup Test Environment" library="depflow_keywords">
-<doc>Sets up test environment with fresh browser</doc>
+<robot generator="Robot 6.1.1 (Python 3.9.6 on darwin)" generated="20250923 07:03:53.415" rpa="false" schemaversion="4">
+<suite id="s1" name="Validate Auth Bypass" source="/Users/mmoola/Cursor/Dependency Management App/tests/validate_auth_bypass.robot">
+<test id="s1-t1" name="Validate Test Mode Login Admin" line="7">
 <kw name="Open DepFlow Application" library="depflow_keywords">
 <doc>Opens the DepFlow application in browser</doc>
 <kw name="Open Browser" library="SeleniumLibrary">
 <arg>${APP_URL}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<msg timestamp="20250922 15:22:55.684" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
-<status status="PASS" starttime="20250922 15:22:55.684" endtime="20250922 15:22:57.112"/>
+<msg timestamp="20250923 07:03:58.788" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20250923 07:03:58.788" endtime="20250923 07:04:05.449"/>
 </kw>
 <kw name="Maximize Browser Window" library="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" starttime="20250922 15:22:57.113" endtime="20250922 15:22:57.479"/>
+<status status="PASS" starttime="20250923 07:04:05.450" endtime="20250923 07:04:05.831"/>
 </kw>
 <kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
 <arg>${IMPLICIT_WAIT}</arg>
 <doc>Sets the implicit wait value used by Selenium.</doc>
-<status status="PASS" starttime="20250922 15:22:57.479" endtime="20250922 15:22:57.480"/>
+<status status="PASS" starttime="20250923 07:04:05.831" endtime="20250923 07:04:05.835"/>
 </kw>
 <kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
 <arg>${LANDING_PAGE_LOGO}</arg>
 <arg>timeout=30s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" starttime="20250922 15:22:57.480" endtime="20250922 15:22:57.487"/>
-</kw>
-<status status="PASS" starttime="20250922 15:22:55.684" endtime="20250922 15:22:57.487"/>
-</kw>
-<kw name="Capture Page Screenshot" library="SeleniumLibrary">
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<msg timestamp="20250922 15:22:57.696" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-91.png"&gt;&lt;img src="selenium-screenshot-91.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20250922 15:22:57.487" endtime="20250922 15:22:57.696"/>
-</kw>
-<status status="PASS" starttime="20250922 15:22:55.684" endtime="20250922 15:22:57.696"/>
-</kw>
-<kw name="Login As Admin" library="depflow_keywords">
-<doc>Quick login as admin user</doc>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${LOGIN_BUTTON}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 15:22:57.696" level="INFO">Clicking element 'xpath://button[contains(@onclick, 'openLoginModal')]'.</msg>
-<status status="PASS" starttime="20250922 15:22:57.696" endtime="20250922 15:22:57.723"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${LOGIN_MODAL}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" starttime="20250922 15:22:57.723" endtime="20250922 15:22:57.740"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${ADMIN_CREDENTIALS_BUTTON}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 15:22:57.741" level="INFO">Clicking element 'xpath://button[contains(@onclick, 'fillAdminCredentials')]'.</msg>
-<status status="PASS" starttime="20250922 15:22:57.740" endtime="20250922 15:22:57.771"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${LOGIN_SUBMIT_BUTTON}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 15:22:57.771" level="INFO">Clicking element 'xpath://button[contains(@class, 'btn-login')]'.</msg>
-<msg timestamp="20250922 15:22:59.087" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-92.png"&gt;&lt;img src="selenium-screenshot-92.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:22:59.091" level="FAIL">ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-7   chromedriver                        0x0000000104db2220 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
-8   chromedriver                        0x0000000104db1cac _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 322360
-9   chromedriver                        0x0000000104dfd604 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 631952
-10  chromedriver                        0x0000000104db00d0 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8
-</msg>
-<status status="FAIL" starttime="20250922 15:22:57.771" endtime="20250922 15:22:59.153"/>
-</kw>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${DASHBOARD_PAGE}</arg>
-<arg>timeout=10s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" starttime="20250922 15:22:59.153" endtime="20250922 15:22:59.153"/>
-</kw>
-<status status="FAIL" starttime="20250922 15:22:57.696" endtime="20250922 15:22:59.153"/>
-</kw>
-<kw name="Add New Dependency" library="depflow_keywords">
-<arg>FilterTest_React</arg>
-<arg>React component for testing</arg>
-<arg>Quality flow</arg>
-<arg>NOT STARTED</arg>
-<arg>HIGH</arg>
-<arg>HIGH</arg>
-<doc>Adds a new dependency with provided details</doc>
-<status status="NOT RUN" starttime="20250922 15:22:59.153" endtime="20250922 15:22:59.153"/>
-</kw>
-<kw name="Add New Dependency" library="depflow_keywords">
-<arg>FilterTest_Angular</arg>
-<arg>Angular service for testing</arg>
-<arg>Data Collection</arg>
-<arg>IN PROGRESS</arg>
-<arg>MEDIUM</arg>
-<arg>MEDIUM</arg>
-<doc>Adds a new dependency with provided details</doc>
-<status status="NOT RUN" starttime="20250922 15:22:59.153" endtime="20250922 15:22:59.153"/>
-</kw>
-<kw name="Add New Dependency" library="depflow_keywords">
-<arg>FilterTest_Vue</arg>
-<arg>Vue component for testing</arg>
-<arg>ADAP Platform</arg>
-<arg>BLOCKED</arg>
-<arg>LOW</arg>
-<arg>LOW</arg>
-<doc>Adds a new dependency with provided details</doc>
-<status status="NOT RUN" starttime="20250922 15:22:59.153" endtime="20250922 15:22:59.153"/>
-</kw>
-<kw name="Add New Dependency" library="depflow_keywords">
-<arg>FilterTest_Node</arg>
-<arg>Node.js backend service</arg>
-<arg>CrowdGen</arg>
-<arg>COMPLETED</arg>
-<arg>HIGH</arg>
-<arg>MEDIUM</arg>
-<doc>Adds a new dependency with provided details</doc>
-<status status="NOT RUN" starttime="20250922 15:22:59.153" endtime="20250922 15:22:59.153"/>
-</kw>
-<status status="FAIL" starttime="20250922 15:22:55.683" endtime="20250922 15:22:59.153"/>
-</kw>
-<test id="s1-t1" name="TC029 - Search Dependencies By Name" line="41">
-<doc>Test searching for dependencies by name</doc>
-<tag>filter</tag>
-<tag>search</tag>
-<tag>smoke</tag>
-<status status="FAIL" starttime="20250922 15:22:59.153" endtime="20250922 15:22:59.154">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t2" name="TC030 - Search Dependencies By Description" line="54">
-<doc>Test searching for dependencies by description content</doc>
-<tag>filter</tag>
-<tag>search</tag>
-<status status="FAIL" starttime="20250922 15:22:59.154" endtime="20250922 15:22:59.154">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t3" name="TC031 - Search With Partial Text" line="67">
-<doc>Test searching with partial text matches</doc>
-<tag>partial</tag>
-<tag>search</tag>
-<status status="FAIL" starttime="20250922 15:22:59.154" endtime="20250922 15:22:59.155">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t4" name="TC032 - Search Case Insensitive" line="77">
-<doc>Test that search is case insensitive</doc>
-<tag>case_insensitive</tag>
-<tag>search</tag>
-<status status="FAIL" starttime="20250922 15:22:59.155" endtime="20250922 15:22:59.155">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t5" name="TC033 - Search With No Results" line="92">
-<doc>Test searching with text that matches nothing</doc>
-<tag>negative</tag>
-<tag>search</tag>
-<status status="FAIL" starttime="20250922 15:22:59.155" endtime="20250922 15:22:59.155">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t6" name="TC034 - Filter By Team" line="101">
-<doc>Test filtering dependencies by team</doc>
-<tag>filter</tag>
-<tag>team</tag>
-<status status="FAIL" starttime="20250922 15:22:59.155" endtime="20250922 15:22:59.156">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t7" name="TC035 - Filter By Status" line="111">
-<doc>Test filtering dependencies by status</doc>
-<tag>filter</tag>
-<tag>status</tag>
-<status status="FAIL" starttime="20250922 15:22:59.156" endtime="20250922 15:22:59.156">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t8" name="TC036 - Filter By Priority" line="121">
-<doc>Test filtering dependencies by priority level</doc>
-<tag>filter</tag>
-<tag>priority</tag>
-<status status="FAIL" starttime="20250922 15:22:59.156" endtime="20250922 15:22:59.156">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t9" name="TC037 - Combined Search And Filter" line="132">
-<doc>Test combining search and filter operations</doc>
-<tag>combined</tag>
-<tag>filter</tag>
-<tag>search</tag>
-<status status="FAIL" starttime="20250922 15:22:59.156" endtime="20250922 15:22:59.157">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t10" name="TC038 - Multiple Filters Combined" line="144">
-<doc>Test applying multiple filters simultaneously</doc>
-<tag>combined</tag>
-<tag>filter</tag>
-<tag>multiple</tag>
-<status status="FAIL" starttime="20250922 15:22:59.157" endtime="20250922 15:22:59.157">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t11" name="TC039 - Clear All Filters Functionality" line="156">
-<doc>Test the clear all filters button functionality</doc>
-<tag>clear</tag>
-<tag>filter</tag>
-<tag>ui</tag>
-<status status="FAIL" starttime="20250922 15:22:59.157" endtime="20250922 15:22:59.157">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t12" name="TC040 - Counter Filter By Total" line="176">
-<doc>Test clicking total counter to show all dependencies</doc>
-<tag>counter</tag>
-<tag>filter</tag>
-<tag>total</tag>
-<status status="FAIL" starttime="20250922 15:22:59.157" endtime="20250922 15:22:59.157">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t13" name="TC041 - Counter Filter By Status" line="186">
-<doc>Test clicking status counters to filter by status</doc>
-<tag>counter</tag>
-<tag>filter</tag>
-<tag>status</tag>
-<status status="FAIL" starttime="20250922 15:22:59.157" endtime="20250922 15:22:59.158">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t14" name="TC042 - Counter Filter Toggle Behavior" line="197">
-<doc>Test counter filter toggle behavior (click twice to clear)</doc>
-<tag>counter</tag>
-<tag>filter</tag>
-<tag>toggle</tag>
-<status status="FAIL" starttime="20250922 15:22:59.158" endtime="20250922 15:22:59.158">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t15" name="TC043 - Search With Special Characters" line="211">
-<doc>Test searching with special characters</doc>
-<tag>search</tag>
-<tag>special_characters</tag>
-<status status="FAIL" starttime="20250922 15:22:59.158" endtime="20250922 15:22:59.158">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t16" name="TC044 - Filter Persistence During Navigation" line="221">
-<doc>Test that filters persist during page operations</doc>
-<tag>filter</tag>
-<tag>persistence</tag>
-<status status="FAIL" starttime="20250922 15:22:59.158" endtime="20250922 15:22:59.159">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t17" name="TC045 - Empty Search Clear" line="236">
-<doc>Test that clearing search field shows all results</doc>
-<tag>clear</tag>
-<tag>search</tag>
-<status status="FAIL" starttime="20250922 15:22:59.159" endtime="20250922 15:22:59.159">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t18" name="TC046 - Filter By All Teams Sequentially" line="252">
-<doc>Test filtering by each team option sequentially</doc>
-<tag>comprehensive</tag>
-<tag>filter</tag>
-<tag>team</tag>
-<status status="FAIL" starttime="20250922 15:22:59.159" endtime="20250922 15:22:59.159">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t19" name="TC047 - Filter By All Statuses Sequentially" line="265">
-<doc>Test filtering by each status option sequentially</doc>
-<tag>comprehensive</tag>
-<tag>filter</tag>
-<tag>status</tag>
-<status status="FAIL" starttime="20250922 15:22:59.159" endtime="20250922 15:22:59.159">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t20" name="TC048 - Filter By All Priorities Sequentially" line="278">
-<doc>Test filtering by each priority option sequentially</doc>
-<tag>comprehensive</tag>
-<tag>filter</tag>
-<tag>priority</tag>
-<status status="FAIL" starttime="20250922 15:22:59.160" endtime="20250922 15:22:59.160">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t21" name="TC049 - Complex Filter Combinations" line="291">
-<doc>Test complex combinations of multiple filter types</doc>
-<tag>complex</tag>
-<tag>comprehensive</tag>
-<tag>filter</tag>
-<status status="FAIL" starttime="20250922 15:22:59.160" endtime="20250922 15:22:59.160">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<test id="s1-t22" name="TC050 - Filter Results Count Validation" line="313">
-<doc>Test that filter results match expected counts</doc>
-<tag>count</tag>
-<tag>filter</tag>
-<tag>validation</tag>
-<status status="FAIL" starttime="20250922 15:22:59.160" endtime="20250922 15:22:59.160">Parent suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
-</test>
-<kw name="Logout And Teardown Test Environment" type="TEARDOWN">
-<doc>Cleanup test data, logout and teardown</doc>
-<kw name="Run Keyword And Ignore Error" library="BuiltIn">
-<arg>Navigate To Dashboard</arg>
-<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<kw name="Navigate To Dashboard" library="depflow_keywords">
-<doc>Navigates to the dashboard page</doc>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${DASHBOARD_PAGE}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<msg timestamp="20250922 15:23:04.360" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-93.png"&gt;&lt;img src="selenium-screenshot-93.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:23:04.361" level="FAIL">Element 'id:dashboardPage' not visible after 5 seconds.</msg>
-<status status="FAIL" starttime="20250922 15:22:59.161" endtime="20250922 15:23:04.363"/>
-</kw>
-<kw name="Page Should Contain Element" library="SeleniumLibrary">
-<arg>${USER_PANEL}</arg>
-<doc>Verifies that element ``locator`` is found on the current page.</doc>
-<msg timestamp="20250922 15:23:04.368" level="INFO">Current page contains element 'id:userPanel'.</msg>
-<status status="PASS" starttime="20250922 15:23:04.363" endtime="20250922 15:23:04.368"/>
-</kw>
-<status status="FAIL" starttime="20250922 15:22:59.161" endtime="20250922 15:23:04.368"/>
-</kw>
-<status status="PASS" starttime="20250922 15:22:59.161" endtime="20250922 15:23:04.368"/>
-</kw>
-<kw name="Run Keyword And Ignore Error" library="BuiltIn">
-<arg>Delete Dependency</arg>
-<arg>FilterTest_React</arg>
-<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<kw name="Delete Dependency" library="depflow_keywords">
-<arg>FilterTest_React</arg>
-<doc>Deletes a dependency by name</doc>
-<kw name="Set Variable" library="BuiltIn">
-<var>${delete_button}</var>
-<arg>xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), '${dependency_name}')]]//button[contains(@class, 'btn-delete')]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250922 15:23:04.369" level="INFO">${delete_button} = xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_React')]]//button[contains(@class, 'btn-delete')]</msg>
-<status status="PASS" starttime="20250922 15:23:04.368" endtime="20250922 15:23:04.369"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${delete_button}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 15:23:04.369" level="INFO">Clicking element 'xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_React')]]//button[contains(@class, 'btn-delete')]'.</msg>
-<msg timestamp="20250922 15:23:14.617" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-94.png"&gt;&lt;img src="selenium-screenshot-94.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:23:14.618" level="FAIL">Element with locator 'xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_React')]]//button[contains(@class, 'btn-delete')]' not found.</msg>
-<status status="FAIL" starttime="20250922 15:23:04.369" endtime="20250922 15:23:14.649"/>
-</kw>
-<kw name="Handle Alert" library="SeleniumLibrary">
-<arg>ACCEPT</arg>
-<doc>Handles the current alert and returns its message.</doc>
-<msg timestamp="20250922 15:23:14.649" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
-<msg timestamp="20250922 15:23:19.912" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-95.png"&gt;&lt;img src="selenium-screenshot-95.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:23:19.912" level="FAIL">Alert not found in 5 seconds.</msg>
-<status status="FAIL" starttime="20250922 15:23:14.649" endtime="20250922 15:23:19.922"/>
+<status status="PASS" starttime="20250923 07:04:05.835" endtime="20250923 07:04:05.866"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
+<arg>3s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250922 15:23:21.924" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20250922 15:23:19.922" endtime="20250922 15:23:21.924"/>
+<msg timestamp="20250923 07:04:08.867" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:05.866" endtime="20250923 07:04:08.867"/>
 </kw>
-<status status="FAIL" starttime="20250922 15:23:04.368" endtime="20250922 15:23:21.925"/>
+<status status="PASS" starttime="20250923 07:03:58.788" endtime="20250923 07:04:08.867"/>
 </kw>
-<status status="PASS" starttime="20250922 15:23:04.368" endtime="20250922 15:23:21.925"/>
-</kw>
-<kw name="Run Keyword And Ignore Error" library="BuiltIn">
-<arg>Delete Dependency</arg>
-<arg>FilterTest_Angular</arg>
-<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<kw name="Delete Dependency" library="depflow_keywords">
-<arg>FilterTest_Angular</arg>
-<doc>Deletes a dependency by name</doc>
-<kw name="Set Variable" library="BuiltIn">
-<var>${delete_button}</var>
-<arg>xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), '${dependency_name}')]]//button[contains(@class, 'btn-delete')]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250922 15:23:21.926" level="INFO">${delete_button} = xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Angular')]]//button[contains(@class, 'btn-delete')]</msg>
-<status status="PASS" starttime="20250922 15:23:21.926" endtime="20250922 15:23:21.926"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${delete_button}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 15:23:21.927" level="INFO">Clicking element 'xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Angular')]]//button[contains(@class, 'btn-delete')]'.</msg>
-<msg timestamp="20250922 15:23:32.139" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-96.png"&gt;&lt;img src="selenium-screenshot-96.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:23:32.140" level="FAIL">Element with locator 'xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Angular')]]//button[contains(@class, 'btn-delete')]' not found.</msg>
-<status status="FAIL" starttime="20250922 15:23:21.927" endtime="20250922 15:23:32.140"/>
-</kw>
-<kw name="Handle Alert" library="SeleniumLibrary">
-<arg>ACCEPT</arg>
-<doc>Handles the current alert and returns its message.</doc>
-<msg timestamp="20250922 15:23:32.141" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
-<msg timestamp="20250922 15:23:37.449" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-97.png"&gt;&lt;img src="selenium-screenshot-97.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:23:37.449" level="FAIL">Alert not found in 5 seconds.</msg>
-<status status="FAIL" starttime="20250922 15:23:32.141" endtime="20250922 15:23:37.449"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250922 15:23:39.451" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20250922 15:23:37.449" endtime="20250922 15:23:39.452"/>
-</kw>
-<status status="FAIL" starttime="20250922 15:23:21.925" endtime="20250922 15:23:39.453"/>
-</kw>
-<status status="PASS" starttime="20250922 15:23:21.925" endtime="20250922 15:23:39.453"/>
-</kw>
-<kw name="Run Keyword And Ignore Error" library="BuiltIn">
-<arg>Delete Dependency</arg>
-<arg>FilterTest_Vue</arg>
-<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<kw name="Delete Dependency" library="depflow_keywords">
-<arg>FilterTest_Vue</arg>
-<doc>Deletes a dependency by name</doc>
-<kw name="Set Variable" library="BuiltIn">
-<var>${delete_button}</var>
-<arg>xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), '${dependency_name}')]]//button[contains(@class, 'btn-delete')]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250922 15:23:39.455" level="INFO">${delete_button} = xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Vue')]]//button[contains(@class, 'btn-delete')]</msg>
-<status status="PASS" starttime="20250922 15:23:39.454" endtime="20250922 15:23:39.455"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${delete_button}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 15:23:39.456" level="INFO">Clicking element 'xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Vue')]]//button[contains(@class, 'btn-delete')]'.</msg>
-<msg timestamp="20250922 15:23:49.698" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-98.png"&gt;&lt;img src="selenium-screenshot-98.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:23:49.698" level="FAIL">Element with locator 'xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Vue')]]//button[contains(@class, 'btn-delete')]' not found.</msg>
-<status status="FAIL" starttime="20250922 15:23:39.455" endtime="20250922 15:23:49.698"/>
-</kw>
-<kw name="Handle Alert" library="SeleniumLibrary">
-<arg>ACCEPT</arg>
-<doc>Handles the current alert and returns its message.</doc>
-<msg timestamp="20250922 15:23:49.698" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
-<msg timestamp="20250922 15:23:55.036" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-99.png"&gt;&lt;img src="selenium-screenshot-99.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:23:55.036" level="FAIL">Alert not found in 5 seconds.</msg>
-<status status="FAIL" starttime="20250922 15:23:49.698" endtime="20250922 15:23:55.036"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250922 15:23:57.038" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20250922 15:23:55.036" endtime="20250922 15:23:57.038"/>
-</kw>
-<status status="FAIL" starttime="20250922 15:23:39.454" endtime="20250922 15:23:57.039"/>
-</kw>
-<status status="PASS" starttime="20250922 15:23:39.454" endtime="20250922 15:23:57.039"/>
-</kw>
-<kw name="Run Keyword And Ignore Error" library="BuiltIn">
-<arg>Delete Dependency</arg>
-<arg>FilterTest_Node</arg>
-<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<kw name="Delete Dependency" library="depflow_keywords">
-<arg>FilterTest_Node</arg>
-<doc>Deletes a dependency by name</doc>
-<kw name="Set Variable" library="BuiltIn">
-<var>${delete_button}</var>
-<arg>xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), '${dependency_name}')]]//button[contains(@class, 'btn-delete')]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20250922 15:23:57.040" level="INFO">${delete_button} = xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Node')]]//button[contains(@class, 'btn-delete')]</msg>
-<status status="PASS" starttime="20250922 15:23:57.040" endtime="20250922 15:23:57.040"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${delete_button}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 15:23:57.041" level="INFO">Clicking element 'xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Node')]]//button[contains(@class, 'btn-delete')]'.</msg>
-<msg timestamp="20250922 15:24:07.271" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-100.png"&gt;&lt;img src="selenium-screenshot-100.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:24:07.271" level="FAIL">Element with locator 'xpath://tr[td[contains(@class, 'dependency-name') and contains(text(), 'FilterTest_Node')]]//button[contains(@class, 'btn-delete')]' not found.</msg>
-<status status="FAIL" starttime="20250922 15:23:57.040" endtime="20250922 15:24:07.271"/>
-</kw>
-<kw name="Handle Alert" library="SeleniumLibrary">
-<arg>ACCEPT</arg>
-<doc>Handles the current alert and returns its message.</doc>
-<msg timestamp="20250922 15:24:07.271" level="INFO">HANDLE::&lt;class 'NoneType'&gt;::None</msg>
-<msg timestamp="20250922 15:24:12.557" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-101.png"&gt;&lt;img src="selenium-screenshot-101.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:24:12.558" level="FAIL">Alert not found in 5 seconds.</msg>
-<status status="FAIL" starttime="20250922 15:24:07.271" endtime="20250922 15:24:12.558"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20250922 15:24:14.560" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20250922 15:24:12.558" endtime="20250922 15:24:14.560"/>
-</kw>
-<status status="FAIL" starttime="20250922 15:23:57.040" endtime="20250922 15:24:14.561"/>
-</kw>
-<status status="PASS" starttime="20250922 15:23:57.039" endtime="20250922 15:24:14.561"/>
-</kw>
-<kw name="Run Keyword And Ignore Error" library="BuiltIn">
-<arg>Logout From DepFlow</arg>
-<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
-<kw name="Logout From DepFlow" library="depflow_keywords">
-<doc>Logs out from DepFlow application</doc>
-<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
-<arg>${LOGOUT_BUTTON}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<msg timestamp="20250922 15:24:19.762" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-102.png"&gt;&lt;img src="selenium-screenshot-102.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:24:19.762" level="FAIL">Element 'xpath://button[contains(@class, 'btn-logout')]' not visible after 5 seconds.</msg>
-<status status="FAIL" starttime="20250922 15:24:14.562" endtime="20250922 15:24:19.763"/>
-</kw>
-<kw name="Click Element" library="SeleniumLibrary">
-<arg>${LOGOUT_BUTTON}</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<msg timestamp="20250922 15:24:19.763" level="INFO">Clicking element 'xpath://button[contains(@class, 'btn-logout')]'.</msg>
-<msg timestamp="20250922 15:24:30.009" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-103.png"&gt;&lt;img src="selenium-screenshot-103.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg timestamp="20250922 15:24:30.009" level="FAIL">ElementNotInteractableException: Message: element not interactable
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d74ec4 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73040
-3   chromedriver                        0x0000000104dbd42c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 369336
-4   chromedriver                        0x0000000104db2220 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323756
-5   chromedriver                        0x0000000104db1cac _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 322360
-6   chromedriver                        0x0000000104dfd604 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 631952
-7   chromedriver                        0x0000000104db00d0 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-8   chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-9   chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-10  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-11  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-12  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-13  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-14  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-15  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-16  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-17  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8
-</msg>
-<status status="FAIL" starttime="20250922 15:24:19.763" endtime="20250922 15:24:30.009"/>
-</kw>
-<kw name="Wait Until Element Is Not Visible" library="SeleniumLibrary">
-<arg>${USER_PANEL}</arg>
-<arg>timeout=10s</arg>
-<doc>Waits until the element ``locator`` is not visible.</doc>
-<status status="PASS" starttime="20250922 15:24:30.009" endtime="20250922 15:24:30.018"/>
-</kw>
+<kw name="Test Mode Admin Login" library="depflow_keywords">
+<doc>Quick admin login using test mode</doc>
+<kw name="Test Mode Login" library="depflow_keywords">
+<arg>admin</arg>
+<doc>Login using test mode bypass - no modal interaction required</doc>
 <kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
 <arg>${LANDING_PAGE_LOGO}</arg>
 <arg>timeout=10s</arg>
 <doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" starttime="20250922 15:24:30.018" endtime="20250922 15:24:30.022"/>
+<status status="PASS" starttime="20250923 07:04:08.868" endtime="20250923 07:04:08.877"/>
 </kw>
-<status status="FAIL" starttime="20250922 15:24:14.562" endtime="20250922 15:24:30.023"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:09.879" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:08.878" endtime="20250923 07:04:09.879"/>
 </kw>
-<status status="PASS" starttime="20250922 15:24:14.561" endtime="20250922 15:24:30.023"/>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeLogin === 'function') {</arg>
+<arg>window.DepFlow.testModeLogin('${user_type}');</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode login function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:09.882" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeLogin === 'function') {window.DepFlow.testModeLogin('admin');} else {console.error('Test mode login function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:09.879" endtime="20250923 07:04:09.896"/>
 </kw>
-<kw name="Teardown Test Environment" library="depflow_keywords">
-<doc>Tears down test environment</doc>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:11.898" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:09.896" endtime="20250923 07:04:11.898"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:11.898" endtime="20250923 07:04:11.983"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:11.984" endtime="20250923 07:04:11.996"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Login Completed for ${user_type}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:11.996" level="INFO">Test Mode Login Completed for admin</msg>
+<status status="PASS" starttime="20250923 07:04:11.996" endtime="20250923 07:04:11.996"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:08.868" endtime="20250923 07:04:11.996"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:08.868" endtime="20250923 07:04:11.996"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:12.003" level="INFO">Element 'id:dashboardPage' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:11.996" endtime="20250923 07:04:12.003"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:12.010" level="INFO">Element 'id:userPanel' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:12.004" endtime="20250923 07:04:12.011"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Admin User</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20250923 07:04:12.017" level="INFO">Current page contains text 'Admin User'.</msg>
+<status status="PASS" starttime="20250923 07:04:12.011" endtime="20250923 07:04:12.017"/>
+</kw>
+<kw name="Verify Test Mode State" library="depflow_keywords">
+<var>${state}</var>
+<doc>Verify test mode state and return information</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<var>${state}</var>
+<arg>return window.DepFlow.testModeGetState ?</arg>
+<arg>JSON.stringify(window.DepFlow.testModeGetState()) :</arg>
+<arg>'{"error": "Test mode not available"}';</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:12.017" level="INFO">Executing JavaScript:
+return window.DepFlow.testModeGetState ?JSON.stringify(window.DepFlow.testModeGetState()) :'{"error": "Test mode not available"}';
+Without any arguments.</msg>
+<msg timestamp="20250923 07:04:12.019" level="INFO">${state} = {"isLoggedIn":true,"user":{"email":"admin@demo.com","name":"Admin User","role":"admin"},"dependenciesCount":5,"filteredCount":5,"dashboardVisible":true}</msg>
+<status status="PASS" starttime="20250923 07:04:12.017" endtime="20250923 07:04:12.019"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Current Test Mode State: ${state}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:12.020" level="INFO">Current Test Mode State: {"isLoggedIn":true,"user":{"email":"admin@demo.com","name":"Admin User","role":"admin"},"dependenciesCount":5,"filteredCount":5,"dashboardVisible":true}</msg>
+<status status="PASS" starttime="20250923 07:04:12.019" endtime="20250923 07:04:12.020"/>
+</kw>
+<msg timestamp="20250923 07:04:12.020" level="INFO">${state} = {"isLoggedIn":true,"user":{"email":"admin@demo.com","name":"Admin User","role":"admin"},"dependenciesCount":5,"filteredCount":5,"dashboardVisible":true}</msg>
+<status status="PASS" starttime="20250923 07:04:12.017" endtime="20250923 07:04:12.020"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${state}</arg>
+<arg>"isLoggedIn":true</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20250923 07:04:12.020" endtime="20250923 07:04:12.020"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${state}</arg>
+<arg>"dashboardVisible":true</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20250923 07:04:12.020" endtime="20250923 07:04:12.020"/>
+</kw>
 <kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>test_mode_admin_login.png</arg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<msg timestamp="20250922 15:24:30.191" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-104.png"&gt;&lt;img src="selenium-screenshot-104.png" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20250922 15:24:30.023" endtime="20250922 15:24:30.191"/>
+<msg timestamp="20250923 07:04:12.210" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="test_mode_admin_login.png"&gt;&lt;img src="test_mode_admin_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250923 07:04:12.020" endtime="20250923 07:04:12.210"/>
 </kw>
 <kw name="Close DepFlow Application" library="depflow_keywords">
 <doc>Closes the browser and cleans up</doc>
 <kw name="Close All Browsers" library="SeleniumLibrary">
 <doc>Closes all open browsers and resets the browser cache.</doc>
-<status status="PASS" starttime="20250922 15:24:30.192" endtime="20250922 15:24:30.337"/>
+<status status="PASS" starttime="20250923 07:04:12.210" endtime="20250923 07:04:13.439"/>
 </kw>
-<status status="PASS" starttime="20250922 15:24:30.191" endtime="20250922 15:24:30.337"/>
+<status status="PASS" starttime="20250923 07:04:12.210" endtime="20250923 07:04:13.439"/>
 </kw>
-<status status="PASS" starttime="20250922 15:24:30.023" endtime="20250922 15:24:30.337"/>
+<doc>Test that admin login bypass works</doc>
+<tag>auth_bypass</tag>
+<tag>validation</tag>
+<status status="PASS" starttime="20250923 07:03:58.787" endtime="20250923 07:04:13.440"/>
+</test>
+<test id="s1-t2" name="Validate Test Mode Login User" line="27">
+<kw name="Open DepFlow Application" library="depflow_keywords">
+<doc>Opens the DepFlow application in browser</doc>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${APP_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250923 07:04:13.441" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20250923 07:04:13.441" endtime="20250923 07:04:16.225"/>
 </kw>
-<status status="PASS" starttime="20250922 15:22:59.161" endtime="20250922 15:24:30.337"/>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20250923 07:04:16.228" endtime="20250923 07:04:16.598"/>
 </kw>
-<doc>Filtering and Search Test Suite for DepFlow Application</doc>
-<status status="FAIL" starttime="20250922 15:22:55.516" endtime="20250922 15:24:30.337">Suite setup failed:
-ElementClickInterceptedException: Message: element click intercepted: Element &lt;button class="btn-login" onclick="open...Modal()"&gt;Login&lt;/button&gt; is not clickable at point (1297, 39). Other element would receive the click: &lt;div id="loginModal" class="modal show" style="display: flex;"&gt;...&lt;/div&gt;
-  (Session info: chrome=140.0.7339.186)
-Stacktrace:
-0   chromedriver                        0x0000000105253418 cxxbridge1$str$ptr + 2882044
-1   chromedriver                        0x000000010524b3b4 cxxbridge1$str$ptr + 2849176
-2   chromedriver                        0x0000000104d75050 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 73436
-3   chromedriver                        0x0000000104dc1f6c _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 388600
-4   chromedriver                        0x0000000104dc04d8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 381796
-5   chromedriver                        0x0000000104dbe2ec _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 373112
-6   chromedriver                        0x0000000104dbd6e8 _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 370036
-    [ Message content over the limit has been removed. ]
-... _RNvCslE4myv9Sbr3_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 315228
-11  chromedriver                        0x0000000105217b08 cxxbridge1$str$ptr + 2638060
-12  chromedriver                        0x000000010521ad20 cxxbridge1$str$ptr + 2650884
-13  chromedriver                        0x00000001051f8e58 cxxbridge1$str$ptr + 2511932
-14  chromedriver                        0x000000010521b5cc cxxbridge1$str$ptr + 2653104
-15  chromedriver                        0x00000001051ea59c cxxbridge1$str$ptr + 2452352
-16  chromedriver                        0x000000010523a9f0 cxxbridge1$str$ptr + 2781140
-17  chromedriver                        0x000000010523ab70 cxxbridge1$str$ptr + 2781524
-18  chromedriver                        0x000000010524b000 cxxbridge1$str$ptr + 2848228
-19  libsystem_pthread.dylib             0x0000000186067c0c _pthread_start + 136
-20  libsystem_pthread.dylib             0x0000000186062b80 thread_start + 8</status>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>${IMPLICIT_WAIT}</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20250923 07:04:16.598" endtime="20250923 07:04:16.601"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 07:04:16.601" endtime="20250923 07:04:16.630"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:19.632" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:16.630" endtime="20250923 07:04:19.633"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:13.440" endtime="20250923 07:04:19.633"/>
+</kw>
+<kw name="Test Mode User Login" library="depflow_keywords">
+<doc>Quick user login using test mode</doc>
+<kw name="Test Mode Login" library="depflow_keywords">
+<arg>user</arg>
+<doc>Login using test mode bypass - no modal interaction required</doc>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 07:04:19.634" endtime="20250923 07:04:19.645"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:20.646" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:19.646" endtime="20250923 07:04:20.647"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeLogin === 'function') {</arg>
+<arg>window.DepFlow.testModeLogin('${user_type}');</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode login function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:20.651" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeLogin === 'function') {window.DepFlow.testModeLogin('user');} else {console.error('Test mode login function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:20.647" endtime="20250923 07:04:20.673"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:22.674" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:20.673" endtime="20250923 07:04:22.674"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:22.674" endtime="20250923 07:04:22.690"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:22.690" endtime="20250923 07:04:22.701"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Login Completed for ${user_type}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:22.701" level="INFO">Test Mode Login Completed for user</msg>
+<status status="PASS" starttime="20250923 07:04:22.701" endtime="20250923 07:04:22.701"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:19.634" endtime="20250923 07:04:22.701"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:19.633" endtime="20250923 07:04:22.701"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:22.708" level="INFO">Element 'id:dashboardPage' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:22.701" endtime="20250923 07:04:22.709"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:22.717" level="INFO">Element 'id:userPanel' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:22.709" endtime="20250923 07:04:22.717"/>
+</kw>
+<kw name="Page Should Contain" library="SeleniumLibrary">
+<arg>Regular User</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<msg timestamp="20250923 07:04:22.724" level="INFO">Current page contains text 'Regular User'.</msg>
+<status status="PASS" starttime="20250923 07:04:22.717" endtime="20250923 07:04:22.725"/>
+</kw>
+<kw name="Verify Test Mode State" library="depflow_keywords">
+<var>${state}</var>
+<doc>Verify test mode state and return information</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<var>${state}</var>
+<arg>return window.DepFlow.testModeGetState ?</arg>
+<arg>JSON.stringify(window.DepFlow.testModeGetState()) :</arg>
+<arg>'{"error": "Test mode not available"}';</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:22.725" level="INFO">Executing JavaScript:
+return window.DepFlow.testModeGetState ?JSON.stringify(window.DepFlow.testModeGetState()) :'{"error": "Test mode not available"}';
+Without any arguments.</msg>
+<msg timestamp="20250923 07:04:22.727" level="INFO">${state} = {"isLoggedIn":true,"user":{"email":"user@demo.com","name":"Regular User","role":"user"},"dependenciesCount":5,"filteredCount":5,"dashboardVisible":true}</msg>
+<status status="PASS" starttime="20250923 07:04:22.725" endtime="20250923 07:04:22.727"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Current Test Mode State: ${state}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:22.728" level="INFO">Current Test Mode State: {"isLoggedIn":true,"user":{"email":"user@demo.com","name":"Regular User","role":"user"},"dependenciesCount":5,"filteredCount":5,"dashboardVisible":true}</msg>
+<status status="PASS" starttime="20250923 07:04:22.727" endtime="20250923 07:04:22.728"/>
+</kw>
+<msg timestamp="20250923 07:04:22.728" level="INFO">${state} = {"isLoggedIn":true,"user":{"email":"user@demo.com","name":"Regular User","role":"user"},"dependenciesCount":5,"filteredCount":5,"dashboardVisible":true}</msg>
+<status status="PASS" starttime="20250923 07:04:22.725" endtime="20250923 07:04:22.729"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${state}</arg>
+<arg>"isLoggedIn":true</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20250923 07:04:22.729" endtime="20250923 07:04:22.729"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${state}</arg>
+<arg>"dashboardVisible":true</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20250923 07:04:22.729" endtime="20250923 07:04:22.729"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<arg>test_mode_user_login.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20250923 07:04:23.095" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="test_mode_user_login.png"&gt;&lt;img src="test_mode_user_login.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20250923 07:04:22.729" endtime="20250923 07:04:23.095"/>
+</kw>
+<kw name="Close DepFlow Application" library="depflow_keywords">
+<doc>Closes the browser and cleans up</doc>
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20250923 07:04:23.095" endtime="20250923 07:04:23.229"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:23.095" endtime="20250923 07:04:23.229"/>
+</kw>
+<doc>Test that user login bypass works</doc>
+<tag>auth_bypass</tag>
+<tag>validation</tag>
+<status status="PASS" starttime="20250923 07:04:13.440" endtime="20250923 07:04:23.230"/>
+</test>
+<test id="s1-t3" name="Validate Test Mode Reset" line="47">
+<kw name="Open DepFlow Application" library="depflow_keywords">
+<doc>Opens the DepFlow application in browser</doc>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${APP_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250923 07:04:23.231" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20250923 07:04:23.230" endtime="20250923 07:04:25.922"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20250923 07:04:25.924" endtime="20250923 07:04:26.287"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>${IMPLICIT_WAIT}</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20250923 07:04:26.287" endtime="20250923 07:04:26.289"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 07:04:26.289" endtime="20250923 07:04:26.297"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:29.299" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:26.297" endtime="20250923 07:04:29.300"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:23.230" endtime="20250923 07:04:29.300"/>
+</kw>
+<kw name="Test Mode Admin Login" library="depflow_keywords">
+<doc>Quick admin login using test mode</doc>
+<kw name="Test Mode Login" library="depflow_keywords">
+<arg>admin</arg>
+<doc>Login using test mode bypass - no modal interaction required</doc>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 07:04:29.302" endtime="20250923 07:04:29.312"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:30.315" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:29.312" endtime="20250923 07:04:30.315"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeLogin === 'function') {</arg>
+<arg>window.DepFlow.testModeLogin('${user_type}');</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode login function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:30.316" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeLogin === 'function') {window.DepFlow.testModeLogin('admin');} else {console.error('Test mode login function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:30.315" endtime="20250923 07:04:30.330"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:32.331" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:30.330" endtime="20250923 07:04:32.331"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:32.331" endtime="20250923 07:04:32.346"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:32.346" endtime="20250923 07:04:32.356"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Login Completed for ${user_type}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:32.356" level="INFO">Test Mode Login Completed for admin</msg>
+<status status="PASS" starttime="20250923 07:04:32.356" endtime="20250923 07:04:32.356"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:29.301" endtime="20250923 07:04:32.356"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:29.301" endtime="20250923 07:04:32.356"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:32.363" level="INFO">Element 'id:dashboardPage' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:32.356" endtime="20250923 07:04:32.363"/>
+</kw>
+<kw name="Test Mode Reset" library="depflow_keywords">
+<doc>Complete app state reset for clean test environment</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeReset === 'function') {</arg>
+<arg>window.DepFlow.testModeReset();</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode reset function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:32.363" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeReset === 'function') {window.DepFlow.testModeReset();} else {console.error('Test mode reset function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:32.363" endtime="20250923 07:04:32.367"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:33.370" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:32.367" endtime="20250923 07:04:33.370"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Reset Completed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:33.370" level="INFO">Test Mode Reset Completed</msg>
+<status status="PASS" starttime="20250923 07:04:33.370" endtime="20250923 07:04:33.370"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:32.363" endtime="20250923 07:04:33.371"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:33.385" level="INFO">Element 'xpath://div[contains(@class, 'depflow-logo')]' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:33.371" endtime="20250923 07:04:33.385"/>
+</kw>
+<kw name="Element Should Not Be Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is NOT visible.</doc>
+<msg timestamp="20250923 07:04:33.395" level="INFO">Element 'id:dashboardPage' exists but is not displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:33.385" endtime="20250923 07:04:33.395"/>
+</kw>
+<kw name="Close DepFlow Application" library="depflow_keywords">
+<doc>Closes the browser and cleans up</doc>
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20250923 07:04:33.395" endtime="20250923 07:04:33.730"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:33.395" endtime="20250923 07:04:33.730"/>
+</kw>
+<doc>Test that reset works properly</doc>
+<tag>auth_bypass</tag>
+<tag>validation</tag>
+<status status="PASS" starttime="20250923 07:04:23.230" endtime="20250923 07:04:33.730"/>
+</test>
+<test id="s1-t4" name="Validate Test Mode Suite Flow" line="62">
+<kw name="Test Mode Suite Setup" library="depflow_keywords">
+<doc>Setup using test mode authentication</doc>
+<kw name="Open DepFlow Application" library="depflow_keywords">
+<doc>Opens the DepFlow application in browser</doc>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${APP_URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20250923 07:04:33.731" level="INFO">Opening browser 'Chrome' to base url 'http://localhost:3000'.</msg>
+<status status="PASS" starttime="20250923 07:04:33.731" endtime="20250923 07:04:35.187"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20250923 07:04:35.188" endtime="20250923 07:04:35.554"/>
+</kw>
+<kw name="Set Selenium Implicit Wait" library="SeleniumLibrary">
+<arg>${IMPLICIT_WAIT}</arg>
+<doc>Sets the implicit wait value used by Selenium.</doc>
+<status status="PASS" starttime="20250923 07:04:35.555" endtime="20250923 07:04:35.558"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=30s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 07:04:35.558" endtime="20250923 07:04:35.566"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:38.568" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:35.566" endtime="20250923 07:04:38.568"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:33.731" endtime="20250923 07:04:38.568"/>
+</kw>
+<kw name="Test Mode Admin Login" library="depflow_keywords">
+<doc>Quick admin login using test mode</doc>
+<kw name="Test Mode Login" library="depflow_keywords">
+<arg>admin</arg>
+<doc>Login using test mode bypass - no modal interaction required</doc>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 07:04:38.569" endtime="20250923 07:04:38.575"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:39.576" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:38.575" endtime="20250923 07:04:39.576"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeLogin === 'function') {</arg>
+<arg>window.DepFlow.testModeLogin('${user_type}');</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode login function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:39.577" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeLogin === 'function') {window.DepFlow.testModeLogin('admin');} else {console.error('Test mode login function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:39.576" endtime="20250923 07:04:39.589"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:41.591" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:39.589" endtime="20250923 07:04:41.591"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:41.591" endtime="20250923 07:04:41.610"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:41.610" endtime="20250923 07:04:41.622"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Login Completed for ${user_type}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:41.622" level="INFO">Test Mode Login Completed for admin</msg>
+<status status="PASS" starttime="20250923 07:04:41.622" endtime="20250923 07:04:41.622"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:38.569" endtime="20250923 07:04:41.622"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:38.569" endtime="20250923 07:04:41.622"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:33.731" endtime="20250923 07:04:41.622"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:41.631" level="INFO">Element 'id:dashboardPage' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:41.622" endtime="20250923 07:04:41.631"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:41.638" level="INFO">Element 'id:userPanel' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:41.631" endtime="20250923 07:04:41.638"/>
+</kw>
+<kw name="Test Mode Test Setup" library="depflow_keywords">
+<doc>Individual test setup using test mode</doc>
+<kw name="Test Mode Reset" library="depflow_keywords">
+<doc>Complete app state reset for clean test environment</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeReset === 'function') {</arg>
+<arg>window.DepFlow.testModeReset();</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode reset function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:41.639" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeReset === 'function') {window.DepFlow.testModeReset();} else {console.error('Test mode reset function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:41.639" endtime="20250923 07:04:41.643"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:42.644" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:41.643" endtime="20250923 07:04:42.644"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Reset Completed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:42.644" level="INFO">Test Mode Reset Completed</msg>
+<status status="PASS" starttime="20250923 07:04:42.644" endtime="20250923 07:04:42.644"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:41.639" endtime="20250923 07:04:42.644"/>
+</kw>
+<kw name="Test Mode Admin Login" library="depflow_keywords">
+<doc>Quick admin login using test mode</doc>
+<kw name="Test Mode Login" library="depflow_keywords">
+<arg>admin</arg>
+<doc>Login using test mode bypass - no modal interaction required</doc>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${LANDING_PAGE_LOGO}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20250923 07:04:42.646" endtime="20250923 07:04:42.651"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:43.652" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:42.651" endtime="20250923 07:04:43.653"/>
+</kw>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeLogin === 'function') {</arg>
+<arg>window.DepFlow.testModeLogin('${user_type}');</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode login function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:43.654" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeLogin === 'function') {window.DepFlow.testModeLogin('admin');} else {console.error('Test mode login function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:43.653" endtime="20250923 07:04:43.661"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:45.663" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20250923 07:04:43.661" endtime="20250923 07:04:45.663"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<arg>timeout=10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:45.663" endtime="20250923 07:04:45.678"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${USER_PANEL}</arg>
+<arg>timeout=5s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20250923 07:04:45.678" endtime="20250923 07:04:45.687"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Login Completed for ${user_type}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:45.688" level="INFO">Test Mode Login Completed for admin</msg>
+<status status="PASS" starttime="20250923 07:04:45.688" endtime="20250923 07:04:45.688"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:42.645" endtime="20250923 07:04:45.688"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:42.644" endtime="20250923 07:04:45.688"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:41.638" endtime="20250923 07:04:45.688"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${DASHBOARD_PAGE}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20250923 07:04:45.696" level="INFO">Element 'id:dashboardPage' is displayed.</msg>
+<status status="PASS" starttime="20250923 07:04:45.688" endtime="20250923 07:04:45.696"/>
+</kw>
+<kw name="Test Mode Test Teardown" library="depflow_keywords">
+<doc>Individual test teardown using test mode</doc>
+<kw name="Test Mode Reset" library="depflow_keywords">
+<doc>Complete app state reset for clean test environment</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeReset === 'function') {</arg>
+<arg>window.DepFlow.testModeReset();</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode reset function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:45.697" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeReset === 'function') {window.DepFlow.testModeReset();} else {console.error('Test mode reset function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:45.696" endtime="20250923 07:04:45.700"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:46.702" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:45.700" endtime="20250923 07:04:46.702"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Reset Completed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:46.702" level="INFO">Test Mode Reset Completed</msg>
+<status status="PASS" starttime="20250923 07:04:46.702" endtime="20250923 07:04:46.702"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:45.696" endtime="20250923 07:04:46.702"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:45.696" endtime="20250923 07:04:46.702"/>
+</kw>
+<kw name="Test Mode Suite Teardown" library="depflow_keywords">
+<doc>Teardown using test mode</doc>
+<kw name="Test Mode Reset" library="depflow_keywords">
+<doc>Complete app state reset for clean test environment</doc>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>if (typeof window.DepFlow.testModeReset === 'function') {</arg>
+<arg>window.DepFlow.testModeReset();</arg>
+<arg>} else {</arg>
+<arg>console.error('Test mode reset function not available');</arg>
+<arg>}</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20250923 07:04:46.703" level="INFO">Executing JavaScript:
+if (typeof window.DepFlow.testModeReset === 'function') {window.DepFlow.testModeReset();} else {console.error('Test mode reset function not available');}
+Without any arguments.</msg>
+<status status="PASS" starttime="20250923 07:04:46.702" endtime="20250923 07:04:46.706"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20250923 07:04:47.708" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20250923 07:04:46.706" endtime="20250923 07:04:47.708"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Test Mode Reset Completed</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20250923 07:04:47.708" level="INFO">Test Mode Reset Completed</msg>
+<status status="PASS" starttime="20250923 07:04:47.708" endtime="20250923 07:04:47.708"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:46.702" endtime="20250923 07:04:47.708"/>
+</kw>
+<kw name="Close DepFlow Application" library="depflow_keywords">
+<doc>Closes the browser and cleans up</doc>
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20250923 07:04:47.709" endtime="20250923 07:04:47.825"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:47.708" endtime="20250923 07:04:47.825"/>
+</kw>
+<status status="PASS" starttime="20250923 07:04:46.702" endtime="20250923 07:04:47.825"/>
+</kw>
+<doc>Test complete suite setup/teardown flow</doc>
+<tag>auth_bypass</tag>
+<tag>suite_flow</tag>
+<tag>validation</tag>
+<status status="PASS" starttime="20250923 07:04:33.730" endtime="20250923 07:04:47.825"/>
+</test>
+<doc>Validation test for authentication bypass solution</doc>
+<status status="PASS" starttime="20250923 07:03:53.418" endtime="20250923 07:04:47.826"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="22" skip="0">All Tests</stat>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">case_insensitive</stat>
-<stat pass="0" fail="2" skip="0">clear</stat>
-<stat pass="0" fail="2" skip="0">combined</stat>
-<stat pass="0" fail="1" skip="0">complex</stat>
-<stat pass="0" fail="4" skip="0">comprehensive</stat>
-<stat pass="0" fail="1" skip="0">count</stat>
-<stat pass="0" fail="3" skip="0">counter</stat>
-<stat pass="0" fail="17" skip="0">filter</stat>
-<stat pass="0" fail="1" skip="0">multiple</stat>
-<stat pass="0" fail="1" skip="0">negative</stat>
-<stat pass="0" fail="1" skip="0">partial</stat>
-<stat pass="0" fail="1" skip="0">persistence</stat>
-<stat pass="0" fail="2" skip="0">priority</stat>
-<stat pass="0" fail="8" skip="0">search</stat>
-<stat pass="0" fail="1" skip="0">smoke</stat>
-<stat pass="0" fail="1" skip="0">special_characters</stat>
-<stat pass="0" fail="3" skip="0">status</stat>
-<stat pass="0" fail="2" skip="0">team</stat>
-<stat pass="0" fail="1" skip="0">toggle</stat>
-<stat pass="0" fail="1" skip="0">total</stat>
-<stat pass="0" fail="1" skip="0">ui</stat>
-<stat pass="0" fail="1" skip="0">validation</stat>
+<stat pass="4" fail="0" skip="0">auth_bypass</stat>
+<stat pass="1" fail="0" skip="0">suite_flow</stat>
+<stat pass="4" fail="0" skip="0">validation</stat>
 </tag>
 <suite>
-<stat pass="0" fail="22" skip="0" id="s1" name="03 Filtering Search Tests">03 Filtering Search Tests</stat>
+<stat pass="4" fail="0" skip="0" id="s1" name="Validate Auth Bypass">Validate Auth Bypass</stat>
 </suite>
 </statistics>
 <errors>
